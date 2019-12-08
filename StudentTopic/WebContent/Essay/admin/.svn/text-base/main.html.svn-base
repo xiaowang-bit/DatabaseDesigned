@@ -1,0 +1,11 @@
+<frameset rows="70,80,*,30" frameborder="no">
+	<frame src="admin_top.jsp" scrolling="no"/>
+	<frame src="admin_menu.html" scrolling="no"/>
+		<frameset cols="186,*,186">
+			<frame src="admin_content_left.html" scrolling="no"/>
+			<frame src="admin_content_center.html"  name ="center" scrolling="no"/>
+			<frame src="admin_content_right.html" scrolling="no"/>
+		</frameset>
+	
+	<frame src="admin_bottom.html" scrolling="no"/>
+</frameset>

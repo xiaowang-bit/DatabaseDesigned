@@ -1,0 +1,53 @@
+body{
+	margin: 0px;
+	padding: 0px;
+}
+.contain{
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.title{
+	background: #1CAC91;
+	height: 65px;
+	color: white;
+    font-weight: bold;
+	font-size: 30px;
+	padding-top: 10px;
+}
+
+.head{
+	background-color:#191919; 
+	height: 60px;
+	
+}
+
+.content{
+	background: #1cac91;
+	height: 465px;
+	padding-top: 20px;
+	padding-left: 35%;
+	text-align: center;
+}
+
+.statement{
+	background: #2b2b2b;
+	height: 75px;
+	color: white;
+	text-align: center;
+	line-height:75px;
+	text-shadow: 3px 3px 3px white;
+}
+
+.login{
+	background: white;
+	border-radius: 20px;
+	box-shadow: 10px 10px 10px gray;
+	width: 400px;
+	height: 350px;
+	padding-top: 10px;
+	padding-left: 30px;
+	padding-right: 30px;
+	
+}
