@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css"/>
+		<style type="text/css">
+
+		</style>
+	</head>
+	<body>
+		<div id="wrapper">
+		<div id="wrappertop"></div>
+
+		<div id="wrappermiddle">
+
+			<h2>Add Student</h2>
+			<br /><br />
+      <form action="/Essay_Student/StudentAddServlet" method="post" >
+			<div class="addstu">
+
+				<div class="inputleft"></div>
+
+				<div class="inputmiddle">
+					<input type="text" name="stu_no" class="url" placeholder="输入学生编号">
+				</div>
+
+				<div class="inputright"></div>
+
+			</div>
+						<div class="addstu">
+
+				<div class="inputleft"></div>
+
+				<div class="inputmiddle">
+					<input type="text" name="stu_name" class="url" placeholder="输入学生姓名">
+				</div>
+
+				<div class="inputright"></div>
+
+			</div>
+			<div class="addstu">
+
+				<div class="inputleft"></div>
+
+				<div class="inputmiddle">
+					<input type="text" name="stu_pwd" class="url" placeholder="输入学生密码">
+				</div>
+
+				<div class="inputright"></div>
+
+			</div>
+			<div class="addstu">
+
+				<div class="inputleft"></div>
+
+				<div class="inputmiddle">
+				<input type="text" class="url"  value="0" readonly="readonly" name="stu_check" />
+				</div>
+
+				<div class="inputright"></div>
+
+			</div>
+			<div class="text-center" style="margin-top:10px ;">
+				
+	        <button type="submit" class="btn btn-success">添加</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<button type="reset" class="btn btn-danger">重置</button>
+            <br /><br />
+			</div>
+       
+			</form>
+		</div>
+	</div>
+	</body>
+</html>

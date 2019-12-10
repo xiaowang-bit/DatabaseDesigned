@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>管理课题信息</title>
+		<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" />
+		
+		<style type="text/css">
+			*{
+				padding: 0px;
+				margin: 0px;
+			}
+			body{
+				background-color: #EEF1F6;
+			}
+			#tea{
+				width: 800px;
+				margin: auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="tea">
+			<table class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th>老师姓名</th>
+						<th>题目名称</th>
+						<th>题目描述</th>
+						<th>申请状态</th>
+						<th>审核标志</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>修春勇</td>
+						<td>人工智能</td>
+						<td>人工智能家庭管理系统</td>
+						<td>
+				            <input type="file" class="btn" />
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+	</body>
+	<script type="text/javascript">
+		function modalupdate(name,title,miaoshu)
+		{
+			jQuery("#tea_name").val(name);
+			jQuery("#tea_title").val(title);
+			jQuery("#tea_miaoshu").val(miaoshu);
+			jQuery("#modal_update").modal();
+		}
+		function modaldelete(n)
+		{
+			jQuery("#modal_delete").modal();
+			jQuery("#u_name").html(n);
+		}
+	</script>
+	<script type="text/javascript" src="../js/jquery-3.2.1.min.js" ></script>
+	<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js" ></script>
+</html>
