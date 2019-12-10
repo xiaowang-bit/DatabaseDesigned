@@ -12,6 +12,7 @@ import org.apache.commons.dbutils.handlers.MapListHandler;
 import com.neu.dao.BaseDao;
 import com.wax.JavaBeen.Teacher_info;
 import com.wax.service.DBCPUtilsService;
+import com.wax.utils.JdbcUtils;
 
 public class Teacher_InfoDao{
 	public static Connection con;
@@ -100,5 +101,9 @@ public class Teacher_InfoDao{
 			e.printStackTrace();
 		}		return list;
 	}
-	
+	public  int getTotalCount() {
+		String sql = "select count(1) from admin_info ";
+		return JdbcUtils.getTotalCount(sql);
+		
+	}
 }

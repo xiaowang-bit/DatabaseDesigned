@@ -17,6 +17,7 @@ import com.neu.dao.BaseDao;
 import com.wax.JavaBeen.SelectTopic_info;
 import com.wax.JavaBeen.Student_info;
 import com.wax.service.DBCPUtilsService;
+import com.wax.utils.JdbcUtils;
 
 public class Student_infoDao{
 	public static Connection con;
@@ -43,7 +44,7 @@ public class Student_infoDao{
 				+ "stu_sex =?,stu_pwd=?,stu_academy=?,stu_phone=?,"
 				+ "stu_email=? where stu_id=?";
 		QueryRunner qr=new QueryRunner(DBCPUtilsService.getDataSource());
-		Object[]ob={stu.getStu_name(),stu.getStu_grade(),stu.getStu_class(),stu.getStu_major(),stu.getStu_sex(),stu.getStu_pwd(),stu.getStu_academy(),stu.getStu_phone(),stu.getStu_email(),stu.getStu_id()};
+		Object[]ob={stu.getStu_name(),stu.getStu_sex(),stu.getStu_pwd(),stu.getStu_phone(),stu.getStu_email(),stu.getStu_id()};
 		try {
 			row = qr.update(sql,ob);
 		} catch (SQLException e) {
@@ -52,14 +53,7 @@ public class Student_infoDao{
 		return row;
 	}
 	
-	public int updateCheck(String check,String sno)
-	{
-		int str = 0;
-		String sql = "UPDATE t_student_info SET stu_checked=? where stu_no=?";
-//		str = super.executeUpdate(sql, check,sno);
-		return str;
-	}
-	
+
 	public int delete(String no)
 	{
 		int row = 0;
@@ -72,13 +66,7 @@ public class Student_infoDao{
 		}
 		return row;
 	}
-	public List<Map<String, String>> select()
-	{
-		List<Map<String, String>> list = null;
-		String sql = "select * from t_student_info";
-//		list = qr.executeQuery(sql);
-		return list;
-	}
+
 	public List<Student_info> search(String stu_id)
 	{
 		List<Student_info> list = null;
@@ -117,11 +105,9 @@ public class Student_infoDao{
 		}
 		return list;
 	}
-	public int updatecheck(String no)
-	{
-		int row = 0;
-		String sql = "update t_student_info set stu_checked=1 where stu_no=?";
-//		row = super.executeUpdate(sql, no);
-		return row;
+	public  int getTotalCount() {
+		String sql = "select count(1) from admin_info ";
+		return JdbcUtils.getTotalCount(sql);
+		
 	}
 }

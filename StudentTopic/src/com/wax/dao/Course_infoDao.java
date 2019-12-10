@@ -8,6 +8,7 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.MapListHandler;
 
 import com.wax.service.DBCPUtilsService;
+import com.wax.utils.JdbcUtils;
 
 public class Course_infoDao {
 	public List<Map<String, Object>> findAll(){
@@ -33,5 +34,10 @@ public class Course_infoDao {
 		}
 		
 		return row;
+	}
+	public  int getTotalCount() {
+		String sql = "select count(1) from admin_info ";
+		return JdbcUtils.getTotalCount(sql);
+		
 	}
 }

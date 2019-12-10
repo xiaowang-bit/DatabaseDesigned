@@ -8,6 +8,7 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.MapListHandler;
 
 import com.wax.service.DBCPUtilsService;
+import com.wax.utils.JdbcUtils;
 
 
 
@@ -30,18 +31,10 @@ public class Admin_InfoDao{
 		}
 		return list;
 	}
-	public List<Map<String, Object>> checkemail(String no,String email)
-	{
-		List<Map<String, Object>> list = null;
-		String sql = "select * from t_man_info where man_no=? and man_email = ? ";
-		QueryRunner queryRunner = new QueryRunner();
-        Object[] params={no,email};
-		try {
-			list = queryRunner.query(con, sql,params,new MapListHandler());
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return list;
+	public  int getTotalCount() {
+		String sql = "select count(1) from admin_info ";
+		return JdbcUtils.getTotalCount(sql);
+		
 	}
 	
 }

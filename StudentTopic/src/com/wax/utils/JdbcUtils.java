@@ -10,6 +10,7 @@ import java.util.Properties;
 import javax.sql.DataSource;
 
 import org.apache.commons.dbcp.BasicDataSourceFactory;
+import org.apache.commons.dbutils.QueryRunner;
 
 import com.wax.service.DBCPUtilsService;
 
@@ -72,14 +73,23 @@ public class JdbcUtils {
             e.printStackTrace();
         }
     }
-    public static void close(Connection conn){
-	if (conn != null) {
+    public static int getTotalCount(String sql) {
+		int count= -1;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
 		try {
-			conn.close();
-		} catch (SQLException e) {
-		e.printStackTrace();
-			throw new RuntimeException("关闭连接失败",e);
+			pstmt = getConnection().prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				count=rs.getInt(1);
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			releaseConnection(getConnection(), pstmt, rs);
 		}
-    }
+		return count;
+	}
 }

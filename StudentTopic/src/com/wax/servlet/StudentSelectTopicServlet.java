@@ -8,11 +8,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.wax.JavaBeen.SelectTopic_info;
 import com.wax.JavaBeen.Student_info;
 import com.wax.JavaBeen.Topic_info;
 import com.wax.dao.SelectTopicInfoDao;
 import com.wax.dao.Student_infoDao;
 import com.wax.dao.Topic_InfoDao;
+import com.wax.service.StudentService;
 
 public class StudentSelectTopicServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -30,9 +32,10 @@ public class StudentSelectTopicServlet extends HttpServlet {
 		String st_stu_check=request.getParameter("st_stu_check");
 		String tea_id=request.getParameter("tea_id");
 		String stu_id=request.getParameter("stu_id");
-		String course_id=request.getParameter("course_id");
-		SelectTopicInfoDao dao=new SelectTopicInfoDao();
-		int row = dao.insert(st_semater,topic_id,tea_id,course_id,stu_id,st_stu_check);
+		String team_id=request.getParameter("team_id");
+		SelectTopic_info topic=new SelectTopic_info(st_semater,topic_id,tea_id,stu_id,team_id,st_stu_check,"未审核" );
+		StudentService dao=new StudentService();
+		int row = dao.addTopic(topic);
 		if(row>0)
 		{
 			response.sendRedirect("success.jsp");

@@ -35,8 +35,9 @@
 				<thead>
 					<tr>
 						<th>题目编号</th>
-						<th>老师名字</th>
 						<th>题目名字</th>
+						<th>老师编号</th>
+						<th>老师名字</th>
 						<th>课程名字</th>
 						<th>题目内容</th>
 						<th>限制人数</th>
@@ -44,16 +45,17 @@
 					</tr>
 				</thead>
 		        <tbody>
-		        	<c:forEach var="item" items="${sessionScope.subjs.objectList }">
+		        	<c:forEach var="item" items="${sessionScope.subjs1.objectList }">
 			        	<tr>
 				    	<td>${item.topic_id }</td>
-				    	<td>${item.tea_name }</td>
 				    	<td>${item.topic_name }</td>
+				    	<td>${item.tea_id }</td>
+				    	<td>${item.tea_name }</td>
 				    	<td>${item.course_name}</td>
 				    	<td>${item.topic_content}</td>
 				    	<td>${item.topic_limit_stu}</td>
 				    	<td>
-			    			<a href="#" onclick="showDelete('${item.topic_id}','${item.course_id}','${item.tea_id}','${item.topic_semater} ')">选择 </a>
+			    			<a href="#" onclick="showDelete('${item.topic_id}','${item.course_id}','${item.tea_id}','${item.topic_semater }')">选择 </a>
 			    		</td>
 				    	</tr>
 		        	</c:forEach>
@@ -62,9 +64,9 @@
 		</div>
 		<div>
 			<a href="/StudentTopic/StudentSelectByteaIdServlet?currentPage=1">首页</a>
-			<a href="/StudentTopic/StudentSelectByteaIdServlet?currentPage=${sessionScope.subjs.currentPage==1?1:sessionScope.subjs.currentPage-1}">上一页</a>
-			<a href="/StudentTopic/StudentSelectByteaIdServlet?currentPage=${sessionScope.subjs.currentPage>sessionScope.subjs.totalPage?sessionScope.subjs.currentPage%sessionScope.subjs.totalPage+1:sessionScope.subjs.totalPage}">下一页</a>
-			<a href="/StudentTopic/StudentSelectByteaIdServlet?currentPage=${sessionScope.subjs.totalPage}">尾页</a>
+			<a href="/StudentTopic/StudentSelectByteaIdServlet?currentPage=${sessionScope.subjs1.currentPage==1?1:sessionScope.subjs1.currentPage-1}">上一页</a>
+			<a href="/StudentTopic/StudentSelectByteaIdServlet?currentPage=${sessionScope.subjs1.currentPage>sessionScope.subjs1.totalPage?sessionScope.subjs1.currentPage%sessionScope.subjs1.totalPage+1:sessionScope.subjs1.totalPage}">下一页</a>
+			<a href="/StudentTopic/StudentSelectByteaIdServlet?currentPage=${sessionScope.subjs1.totalPage}">尾页</a>
 		</div>
 		<!-- 选题操作的模态框，对话框 -->
 		<form action="/StudentTopic/StudentSelectTopicServlet?stu_id=${sessionScope.login_stu.stu_id}" method="post" class="form-horizontal">
@@ -86,13 +88,12 @@
 							</select>
 							请选择要加入的小组
 						    <select name="team_id">
-					        	<c:forEach var="item" items="${sessionScope.teams }">
-									  <option value ="${item.team_id}" >${item.team_id}</option>
-								</c:forEach>
+				        	<c:forEach var="item" items="${sessionScope.teams }">
+								  <option value ="${item.team_id}" >${item.team_id}</option>
+							</c:forEach>
 							</select>
 							</br>
 						       您确定要选择【<span id="u_name"></span>】吗？
-						       
 					    </div>
 					    <div class="modal-footer">
 						    <button type="submit" class="btn btn-sm btn-danger">确定</button>

@@ -1,6 +1,5 @@
 package com.wax.dao;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
@@ -11,21 +10,26 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.MapListHandler;
 
-import com.wax.JavaBeen.SelectTopic_info;
 import com.wax.JavaBeen.Topic_info;
 import com.wax.service.DBCPUtilsService;
+import com.wax.utils.JdbcUtils;
 
 public class Topic_InfoDao {
-	public static Connection con;
-	static {
-		con=DBCPUtilsService.getConnection();
-	}
-	public List<Map<String, Object>> findAll(){
+	public List<Map<String, Object>> findAll(int currentPage){
 		List<Map<String, Object>> list=null;
-		String sql="select * from topic_info,teacher_info,course_info where topic_tea_id=tea_id and topic_course_id=course_id";
+		String sql="select * from "
+				+ "("
+				+ "select rownum r,t.* from "
+				+ "(select* from "
+				+ "topic_info,teacher_info,course_info "
+				+ "where topic_tea_id=tea_id and topic_course_id=course_id) t"
+				+ " where rownum<=?"
+				+ ")"
+				+ "where r>=?";
+		Object[]ob= {currentPage*8,(currentPage-1)*8+1};
 		QueryRunner qr=new QueryRunner(DBCPUtilsService.getDataSource());
 		try {
-			list = qr.query(sql,new MapListHandler());
+			list = qr.query(sql,new MapListHandler(),ob);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -34,14 +38,13 @@ public class Topic_InfoDao {
 	}
 	public List<Topic_info> search(String topic_id){
 		List<Topic_info> list=null;
-		String sql="select * from topic_info where topic_id=?";
+		String sql="select * from  topic_info where topic_id=?";
 		QueryRunner qr=new QueryRunner(DBCPUtilsService.getDataSource());
 		try {
 			list = qr.query(sql,new BeanListHandler<Topic_info>(Topic_info.class,new BasicRowProcessor(new GenerousBeanProcessor())),topic_id);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 		return list;
 	}
 	public List<Map<String, Object>> searchByTea(String tea_id){
@@ -59,15 +62,19 @@ public class Topic_InfoDao {
 		
 		return list;
 	}
-	public List<Map<String, Object>> searchAllByTea(String tea_id){
+	public List<Map<String, Object>> searchAllByTea(String tea_id,int currentPage){
 		List<Map<String, Object>> list=null;
-		String sql="select * from topic_info,course_info,teacher_info "
+		String sql="select * from "
+				+ "(select rownum r,t1.*,t2.*,t3.* from "
+				+ "topic_info t1,course_info t2,teacher_info t3"
 				+ " where topic_course_id(+)=course_id"
-				+ " and topic_tea_id=? and topic_tea_id=tea_id ";
+				+ " and topic_tea_id=? and topic_tea_id=tea_id and rownum<=?"
+				+ ")"
+				+ " where r>=?";
 		QueryRunner qr=new QueryRunner(DBCPUtilsService.getDataSource());
+		Object[]ob= {tea_id,currentPage*8,(currentPage-1)*8+1};
 		try {
-			list = qr.query(sql,new MapListHandler(),tea_id);
-			System.out.println(list);
+			list = qr.query(sql,new MapListHandler(),ob);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -88,13 +95,13 @@ public class Topic_InfoDao {
 		
 		return row;
 	}
-	public int update( String topic_name ,String topic_content ,String topic_academy ,String topic_limit_stu,String topic_semater, String tea_id,String course_id,String topic_id){
+	public int update( String topic_name ,String topic_content  ,String topic_limit_stu,String topic_semater, String tea_id,String course_id,String topic_id){
 		int row=0;
 		String sql="update topic_info "
-				+ "set topic_name =?,topic_content =?,topic_academy =?,topic_limit_stu =?,topic_semater =?"
+				+ "set topic_name =?,topic_content =?,topic_limit_stu =?,topic_semater =?"
 				+ " where topic_tea_id=? and topic_course_id=? and topic_id=? ";
 		QueryRunner qr=new QueryRunner(DBCPUtilsService.getDataSource());
-		Object[] obs= {topic_name,topic_content,topic_academy,topic_limit_stu,topic_semater,tea_id,course_id,topic_id};
+		Object[] obs= {topic_name,topic_content,topic_limit_stu,topic_semater,tea_id,course_id,topic_id};
 		try {
 			row = qr.update(sql,obs);
 		} catch (SQLException e) {
@@ -103,13 +110,13 @@ public class Topic_InfoDao {
 		
 		return row;
 	}
-	public int insert( String topic_name ,String topic_content ,String topic_academy ,String topic_limit_stu,String topic_semater, String tea_id,String course_id,String topic_id){
+	public int insert( String topic_name ,String topic_content  ,String topic_limit_stu,String topic_semater, String tea_id,String course_id,String topic_id){
 		int row=0;
 		String sql="insert into topic_info(topic_name,topic_content,topic_academy,topic_limit_stu,topic_semater,"
 				+ " topic_tea_id , topic_course_id , topic_id ) "
-				+ "values( ?,?,?,?,?,?,?,? )";
+				+ "values( ?,?,?,?,?,?,? )";
 		QueryRunner qr=new QueryRunner(DBCPUtilsService.getDataSource());
-		Object[] obs= {topic_name,topic_content,topic_academy,topic_limit_stu,topic_semater,tea_id,course_id,topic_id};
+		Object[] obs= {topic_name,topic_content,topic_limit_stu,topic_semater,tea_id,course_id,topic_id};
 		try {
 			row = qr.update(sql,obs);
 		} catch (SQLException e) {
@@ -118,5 +125,9 @@ public class Topic_InfoDao {
 		
 		return row;
 	}
-
+	public  int getTotalCount() {
+		String sql = "select count(1) from topic_info ";
+		return JdbcUtils.getTotalCount(sql);
+		
+	}
 }
