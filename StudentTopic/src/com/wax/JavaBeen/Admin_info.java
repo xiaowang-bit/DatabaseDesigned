@@ -9,6 +9,27 @@ public class Admin_info {
 	private String admin_phone ;
 	private String admin_email ;
 	private String admin_pwd;
+	public Admin_info() {
+		super();
+	}
+	public Admin_info(String admin_id, String admin_name, String admin_sex, String admin_academy, String admin_title,
+			String admin_phone, String admin_email, String admin_pwd) {
+		super();
+		this.admin_id = admin_id;
+		this.admin_name = admin_name;
+		this.admin_sex = admin_sex;
+		this.admin_academy = admin_academy;
+		this.admin_title = admin_title;
+		this.admin_phone = admin_phone;
+		this.admin_email = admin_email;
+		this.admin_pwd = admin_pwd;
+	}
+	@Override
+	public String toString() {
+		return "Admin_info [admin_id=" + admin_id + ", admin_name=" + admin_name + ", admin_sex=" + admin_sex
+				+ ", admin_academy=" + admin_academy + ", admin_title=" + admin_title + ", admin_phone=" + admin_phone
+				+ ", admin_email=" + admin_email + ", admin_pwd=" + admin_pwd + "]";
+	}
 	public String getAdmin_id() {
 		return admin_id;
 	}

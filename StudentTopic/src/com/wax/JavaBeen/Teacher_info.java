@@ -9,6 +9,27 @@ public class Teacher_info {
 	private String tea_phone  ;
 	private String tea_email  ;
 	private String tea_pwd ;
+	public Teacher_info() {
+		super();
+	}
+	public Teacher_info(String tea_id, String tea_name, String tea_sex, String tea_academy, String tea_title,
+			String tea_phone, String tea_email, String tea_pwd) {
+		super();
+		this.tea_id = tea_id;
+		this.tea_name = tea_name;
+		this.tea_sex = tea_sex;
+		this.tea_academy = tea_academy;
+		this.tea_title = tea_title;
+		this.tea_phone = tea_phone;
+		this.tea_email = tea_email;
+		this.tea_pwd = tea_pwd;
+	}
+	@Override
+	public String toString() {
+		return "Teacher_info [tea_id=" + tea_id + ", tea_name=" + tea_name + ", tea_sex=" + tea_sex + ", tea_academy="
+				+ tea_academy + ", tea_title=" + tea_title + ", tea_phone=" + tea_phone + ", tea_email=" + tea_email
+				+ ", tea_pwd=" + tea_pwd + "]";
+	}
 	public String getTea_id() {
 		return tea_id;
 	}

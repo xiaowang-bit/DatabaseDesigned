@@ -3,13 +3,11 @@ package com.wax.JavaBeen;
 public class Student_info {
 	private String stu_id   ;
 	private String stu_name   ;
-	private String stu_grade   ;
+	private String stu_class_id   ;
 	private String stu_sex   ;
-	private String stu_major   ;
-	private String stu_class   ;
-	private String stu_academy   ;
 	private String stu_phone   ;
 	private String stu_email   ;
+	private String stu_pwd ;
 	public String getStu_id() {
 		return stu_id;
 	}
@@ -22,11 +20,26 @@ public class Student_info {
 	public void setStu_name(String stu_name) {
 		this.stu_name = stu_name;
 	}
-	public String getStu_grade() {
-		return stu_grade;
+
+	public Student_info() {
+		super();
 	}
-	public void setStu_grade(String stu_grade) {
-		this.stu_grade = stu_grade;
+	@Override
+	public String toString() {
+		return "Student_info [stu_id=" + stu_id + ", stu_name=" + stu_name + ", stu_class_id=" + stu_class_id
+				+ ", stu_sex=" + stu_sex + ", stu_phone=" + stu_phone + ", stu_email=" + stu_email + ", stu_pwd="
+				+ stu_pwd + "]";
+	}
+	public Student_info(String stu_id, String stu_name, String stu_class_id, String stu_sex, String stu_phone,
+			String stu_email, String stu_pwd) {
+		super();
+		this.stu_id = stu_id;
+		this.stu_name = stu_name;
+		this.stu_class_id = stu_class_id;
+		this.stu_sex = stu_sex;
+		this.stu_phone = stu_phone;
+		this.stu_email = stu_email;
+		this.stu_pwd = stu_pwd;
 	}
 	public String getStu_sex() {
 		return stu_sex;
@@ -34,24 +47,7 @@ public class Student_info {
 	public void setStu_sex(String stu_sex) {
 		this.stu_sex = stu_sex;
 	}
-	public String getStu_major() {
-		return stu_major;
-	}
-	public void setStu_major(String stu_major) {
-		this.stu_major = stu_major;
-	}
-	public String getStu_class() {
-		return stu_class;
-	}
-	public void setStu_class(String stu_class) {
-		this.stu_class = stu_class;
-	}
-	public String getStu_academy() {
-		return stu_academy;
-	}
-	public void setStu_academy(String stu_academy) {
-		this.stu_academy = stu_academy;
-	}
+
 	public String getStu_phone() {
 		return stu_phone;
 	}
@@ -70,6 +66,11 @@ public class Student_info {
 	public void setStu_pwd(String stu_pwd) {
 		this.stu_pwd = stu_pwd;
 	}
-	private String stu_pwd   ;
+	public String getStu_class_id() {
+		return stu_class_id;
+	}
+	public void setStu_class_id(String stu_class_id) {
+		this.stu_class_id = stu_class_id;
+	}
 
 }
