@@ -35,18 +35,19 @@ INSERT INTO admin_info VALUES ('D0004', '徐小强', '男','楚才学院','副教授','1461
 -- 班级信息表
 --  ----------------------------
 CREATE TABLE class_info (
-  class_grade varchar(10) NOT NULL,
+  class_id varchar(10),
+  class_grade varchar(20) NOT NULL,
   class_name varchar(50) not NULL,
   class_major varchar(50) DEFAULT NULL,
   class_academy varchar(50) DEFAULT NULL,
-  PRIMARY KEY (class_grade,class_name,class_major,class_academy)
+  PRIMARY KEY (class_id)
 );
 -- ----------------------------
 -- 插入班级信息
 -- ----------------------------
-INSERT INTO class_info VALUES ('2017','1701班', '计科','计信学院');
-INSERT INTO class_info VALUES ('2017','1701班', '软工','计信学院');
-INSERT INTO class_info VALUES ('2017','1701班', '信安','计信学院');
+INSERT INTO class_info VALUES ('CS001','2017','1701班', '计科','计信学院');
+INSERT INTO class_info VALUES ('CS002','2017','1701班', '软工','计信学院');
+INSERT INTO class_info VALUES ('CS003','2017','1701班', '信安','计信学院');
 -- ----------------------------
 -- 课程信息表
 -- ----------------------------
@@ -89,26 +90,27 @@ INSERT INTO team_info VALUES ('Te004','数据库小队4','未提交');
 CREATE TABLE student_info(
   stu_id varchar(5) NOT NULL,
   stu_name varchar(30) NOT NULL,
-  stu_grade varchar(30) DEFAULT null,
+  stu_class_id varchar(30) DEFAULT null,
   stu_sex varchar(4) DEFAULT '男' check(stu_sex in('男','女')),
-  stu_major varchar(100) NOT NULL,
-  stu_class varchar(100) DEFAULT NULL,
-  stu_academy varchar(100) DEFAULT NULL,
   stu_phone varchar(20) DEFAULT NULL,
   stu_email varchar(50) DEFAULT NULL,
   stu_pwd varchar(200) DEFAULT 654321,
   PRIMARY KEY (stu_id)，
-  constraint con_stu_class_major_grade foreign key (stu_grade,stu_major,stu_class,stu_academy) references class_info(class_grade,class_major,class_name,class_academy) ON DELETE CASCADE DEFERRABLE
+  constraint con_stu_class_id foreign key (stu_class_id) references class_info(class_id) ON DELETE CASCADE DEFERRABLE
 );
 
 -- ----------------------------
 -- Records of student_info
 -- 插入学生相关信息
 -- ----------------------------
-INSERT INTO student_info VALUES ('S0001', '王澳星', '2017', '男','计科','1701班','计信学院','13453324554','222222222@qq.com','222222');
-INSERT INTO student_info VALUES ('S0002', '吴锦', '2017','男','计科','1701班','计信学院','14617846174','45678@qq.com','111111');
-INSERT INTO student_info VALUES ('S0003', '李雅婷', '2017','女','计科','1701班','计信学院','15071063928','124422144@qq.com','333333');
-INSERT INTO student_info VALUES ('S0004', '徐鑫强', '2017', '男', '计科','1701班','计信学院','14633346174','653312466@qq.com','444444');
+INSERT INTO student_info VALUES ('S0001', '王澳星', 'CS001', '男','13453324554','222222222@qq.com','111111');
+INSERT INTO student_info VALUES ('S0002', '吴锦', 'CS001','男','14617846174','45678@qq.com','222222');
+INSERT INTO student_info VALUES ('S0003', '李雅婷', 'CS001','女','15071063928','124422144@qq.com','333333');
+INSERT INTO student_info VALUES ('S0004', '徐鑫强', 'CS001', '男','14633346174','653312466@qq.com','444444');
+INSERT INTO student_info VALUES ('S0005', '王澳星', 'CS002', '男','13453324554','222222222@qq.com','111111');
+INSERT INTO student_info VALUES ('S0006', '吴锦', 'CS002','男','14617846174','45678@qq.com','222222');
+INSERT INTO student_info VALUES ('S0007', '李雅婷', 'CS003','女','15071063928','124422144@qq.com','333333');
+INSERT INTO student_info VALUES ('S0008', '徐鑫强', 'CS003', '男','14633346174','653312466@qq.com','444444');
 -- ----------------------------
 -- Table structure for 'teacher_info'
 -- 教师信息表
@@ -146,7 +148,6 @@ CREATE TABLE topic_info (
   topic_content varchar(600) DEFAULT NULL,
   topic_tea_id varchar(50) NOT NULL,
   topic_course_id varchar(50) NOT NULL,
-  topic_academy varchar(150) NOT NULL,
   topic_limit_stu varchar(50) NOT NULL,
   topic_semater varchar(50) default NULL,
   PRIMARY KEY (topic_id),
@@ -156,10 +157,10 @@ CREATE TABLE topic_info (
 -- Records of topic_info
 -- 插入选题记录
 -- ----------------------------
-INSERT INTO topic_info VALUES ('Tp0001', '火车票管理系统', '火车票管理','T0001','C001','计算机与信息工程学院','4','2019年第一学期');
-INSERT INTO topic_info VALUES ('Tp0002', '教室管理系统', '教室管理','T0002','C001','计算机与信息工程学院','4','2019年第一学期');
-INSERT INTO topic_info VALUES ('Tp0003', '学生管理系统', '学生管理','T0003','C001','计算机与信息工程学院','4','2019年第一学期');
-INSERT INTO topic_info VALUES ('Tp0004', '火车票管理系统', '火车票管理','T0004','C001','计算机与信息工程学院','4','2019年第一学期');
+INSERT INTO topic_info VALUES ('Tp0001', '火车票管理系统', '火车票管理','T0001','C001','4','2019年第一学期');
+INSERT INTO topic_info VALUES ('Tp0002', '教室管理系统', '教室管理','T0002','C001','4','2019年第一学期');
+INSERT INTO topic_info VALUES ('Tp0003', '学生管理系统', '学生管理','T0003','C001','4','2019年第一学期');
+INSERT INTO topic_info VALUES ('Tp0004', '火车票管理系统', '火车票管理','T0004','C001','4','2019年第一学期');
 
 -- ----------------------------
 -- Table structure for 'select_topic_info'
@@ -169,14 +170,12 @@ CREATE TABLE select_topic_info (
   st_semater varchar(100) DEFAULT NULL,
   st_topic_id varchar(50) NOT NULL,
   st_tea_id varchar(50) NOT NULL,
-  st_course_id varchar(10) NOT NULL,
   st_stu_id varchar(10) NOT NULL,
   st_team_id varchar(10) NOT NULL,
   st_stu_check varchar(10) DEFAULT '组员' check(st_stu_check in('组员','组长')),
   st_checked varchar(20) default'未审核' check(st_checked in('未审核','通过','不通过')),
-  PRIMARY KEY (st_topic_id,st_tea_id,st_stu_id,st_course_id),
+  PRIMARY KEY (st_topic_id,st_tea_id,st_stu_id),
   constraint con_st_topic_id foreign key (st_topic_id) references topic_info(topic_id)ON DELETE CASCADE DEFERRABLE,
-  constraint con_st_course_id foreign key (st_course_id) references course_info(course_id)ON DELETE CASCADE DEFERRABLE,
   constraint con_st_team_id foreign key (st_team_id) references team_info(team_id)ON DELETE CASCADE DEFERRABLE,
   constraint con_st_stu_id foreign key (st_stu_id) references student_info(stu_id)ON DELETE CASCADE DEFERRABLE,
   constraint con_st_tea_id foreign key (st_tea_id) references teacher_info(tea_id) ON DELETE CASCADE DEFERRABLE
@@ -185,8 +184,8 @@ CREATE TABLE select_topic_info (
 -- Records of t_select_topic_info
 -- 插入选题相关信息
 -- ----------------------------
-INSERT INTO select_topic_info VALUES ('2019年到2020年第一学期','Tp0001','T0001','C001','S0003','Te001','组长', '通过');
-INSERT INTO select_topic_info VALUES ('2019年到2020年第一学期','Tp0002','T0001','C001','S0002','Te001','组员','不通过');
-INSERT INTO select_topic_info VALUES ('2019年到2020年第一学期','Tp0002','T0002','C002','S0004','Te002','组长', '通过');
-INSERT INTO select_topic_info VALUES ('2019年到2020年第一学期','Tp0001','T0003','C003','S0001','Te002','组员','不通过');
+INSERT INTO select_topic_info VALUES ('2019年到2020年第一学期','Tp0001','T0001','S0003','Te001','组长', '通过');
+INSERT INTO select_topic_info VALUES ('2019年到2020年第一学期','Tp0002','T0001','S0002','Te001','组员','不通过');
+INSERT INTO select_topic_info VALUES ('2019年到2020年第一学期','Tp0002','T0002','S0004','Te002','组长', '通过');
+INSERT INTO select_topic_info VALUES ('2019年到2020年第一学期','Tp0001','T0003','S0001','Te002','组员','不通过');
 
