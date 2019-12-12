@@ -20,7 +20,6 @@ public class Class_Info {
 	}
 	public Class_Info() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	@Override
 	public String toString() {

@@ -20,10 +20,6 @@ import com.wax.service.DBCPUtilsService;
 import com.wax.utils.JdbcUtils;
 
 public class Student_infoDao{
-	public static Connection con;
-	static {
-		con = DBCPUtilsService.getConnection();
-	}
 	public int insert(Object[]ob)
 	{
 		int str = 0;
@@ -40,11 +36,11 @@ public class Student_infoDao{
 	{
 		int row = 0;
 		String sql = "update student_info set "
-				+ "stu_name=?,stu_grade =?,stu_class=?,stu_major=?,"
-				+ "stu_sex =?,stu_pwd=?,stu_academy=?,stu_phone=?,"
-				+ "stu_email=? where stu_id=?";
+				+ "stu_name=?,"
+				+ "stu_sex =?,stu_pwd=?,stu_phone=?,"
+				+ "stu_email=? where stu_id=? and stu_class_id=?";
 		QueryRunner qr=new QueryRunner(DBCPUtilsService.getDataSource());
-		Object[]ob={stu.getStu_name(),stu.getStu_sex(),stu.getStu_pwd(),stu.getStu_phone(),stu.getStu_email(),stu.getStu_id()};
+		Object[]ob={stu.getStu_name(),stu.getStu_sex(),stu.getStu_pwd(),stu.getStu_phone(),stu.getStu_email(),stu.getStu_id(),stu.getStu_class_id()};
 		try {
 			row = qr.update(sql,ob);
 		} catch (SQLException e) {
@@ -52,7 +48,6 @@ public class Student_infoDao{
 		}
 		return row;
 	}
-	
 
 	public int delete(String no)
 	{
@@ -60,20 +55,20 @@ public class Student_infoDao{
 		String sql = "delete from student_info where stu_id=?";
 		QueryRunner qr=new QueryRunner(DBCPUtilsService.getDataSource());
 		try {
-			row = qr.update(con, sql,no);
+			row = qr.update(sql,no);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return row;
 	}
 
-	public List<Student_info> search(String stu_id)
+	public List<Map<String, Object>> search(String stu_id)
 	{
-		List<Student_info> list = null;
-		String sql = "select * from student_info where stu_id=?";
+		List<Map<String, Object>> list = null;
+		String sql = "select * from student_info,class_info where stu_id=? and class_id=stu_class_id";
 		QueryRunner qr=new QueryRunner(DBCPUtilsService.getDataSource());
 		try {
-			list = qr.query(sql,new BeanListHandler<Student_info>(Student_info.class,new BasicRowProcessor(new GenerousBeanProcessor())),stu_id);
+			list = qr.query(sql,new MapListHandler(),stu_id);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -96,17 +91,17 @@ public class Student_infoDao{
 	public List<Map<String, Object>> findall()
 	{
 		List<Map<String, Object>> list = null;
-		QueryRunner qr=new QueryRunner();
+		QueryRunner qr=new QueryRunner(JdbcUtils.getDataSource());
 		String sql="select *from Student_info";
 		try {
-			list = qr.query(con,sql,new MapListHandler());
+			list = qr.query(sql,new MapListHandler());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return list;
 	}
 	public  int getTotalCount() {
-		String sql = "select count(1) from admin_info ";
+		String sql = "select count(1) from student_info ";
 		return JdbcUtils.getTotalCount(sql);
 		
 	}

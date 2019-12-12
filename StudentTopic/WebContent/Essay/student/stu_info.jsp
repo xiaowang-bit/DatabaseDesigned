@@ -19,6 +19,7 @@
 	</head>
 	<body>	
 		<form action="/StudentTopic/StudentUpdateServlet" method="post" class="form-horizontal">
+					<input type="hidden" name="stu_class_id" value="<%=session.getAttribute("stu_class_id")%>">
    				    <h1>修改个人信息</h1>
    				    <div class="form-group">
    					    <label class="control-label col-sm-4">学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号:</label>
@@ -38,7 +39,7 @@
    					    <label class="control-label col-sm-4">年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;级:</label>
    					    <div class="col-sm-6">
    					    	<input type="text" class="form-control"
-   							    id="stu_grade"  name="stu_grade" value="<%=session.getAttribute("stu_grade")%>"/>
+   							    id="stu_grade"  name="stu_grade" value="<%=session.getAttribute("stu_grade")%>"readonly="readonly"/>
    					    </div>
    				    </div>
    				    <div class="form-group">
@@ -52,21 +53,21 @@
    					    <label class="control-label col-sm-4">专&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;业:</label>
    					    <div class="col-sm-6">
    						    <input type="text" class="form-control"
-   							    id="stu_major" name="stu_major" value="<%=session.getAttribute("stu_major")%>"/>
+   							    id="stu_major" name="stu_major" value="<%=session.getAttribute("stu_major")%>"readonly="readonly"/>
    					    </div>
    				    </div>
    				    <div class="form-group">
    					    <label class="control-label col-sm-4">班&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;级:</label>
    					    <div class="col-sm-6">
    						    <input type="text" class="form-control"
-   							    id="stu_class" name="stu_class" value="<%=session.getAttribute("stu_class")%>"/>
+   							    id="stu_class" name="stu_class" value="<%=session.getAttribute("stu_class")%>"readonly="readonly"/>
    					    </div>
    				    </div>
    				    <div class="form-group">
    					    <label class="control-label col-sm-4">学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;院:</label>
    					    <div class="col-sm-6">
    						    <input type="text" class="form-control"
-   							    id="stu_academy" name="stu_academy" value="<%=session.getAttribute("stu_academy")%>"/>
+   							    id="stu_academy" name="stu_academy" value="<%=session.getAttribute("stu_academy")%>"readonly="readonly"/>
    					    </div>
    				    </div>
    				    <div class="form-group">

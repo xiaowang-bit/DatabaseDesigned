@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import com.wax.JavaBeen.SelectTopic_info;
 import com.wax.dao.SelectTopicInfoDao;
+import com.wax.service.StudentService;
 
 public class StudentDeleteTopicServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -24,9 +25,9 @@ public class StudentDeleteTopicServlet extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
-		SelectTopicInfoDao dao=new SelectTopicInfoDao();
+		StudentService dao=new StudentService();
 		String st_stu_id=request.getParameter("stu_id");
-		int row = dao.delete(st_stu_id);
+		int row = dao.deleteTopic(st_stu_id);
 		if(row>0)
 		{
 			response.sendRedirect("success.jsp");

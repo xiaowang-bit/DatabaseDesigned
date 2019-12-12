@@ -13,6 +13,8 @@ import javax.servlet.http.HttpSession;
 import com.wax.JavaBeen.Topic_info;
 import com.wax.dao.SelectTopicInfoDao;
 import com.wax.dao.Topic_InfoDao;
+import com.wax.service.TeacherService;
+import com.wax.utils.Page;
 
 public class TopicSelectTeacherServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -26,11 +28,21 @@ public class TopicSelectTeacherServlet extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=UTF-8");	
 		
+		String cPage = request.getParameter("currentPage");
+		int currentPage=1;
+		if(cPage==null) {
+			currentPage=1;
+		}else {	
+			currentPage=Integer.parseInt(cPage);
+		}
 		String tea_id = request.getParameter("tea_id");
-		SelectTopicInfoDao dao=new SelectTopicInfoDao();
-		List<Map<String, Object>> topics = dao.searchByTea(tea_id);
+		TeacherService dao=new TeacherService();
+		List<Map<String, Object>> topics = dao.searchTopicByTeaId(tea_id,currentPage);
+		int tatolCount = dao.getTatolCount();
 		HttpSession session = request.getSession();
-		session.setAttribute("topics", topics);
+		Page page=new Page(topics,tatolCount,currentPage);
+		session.setAttribute("topics", page);
+		System.out.println(page.getObjectList());
 		response.sendRedirect("/StudentTopic/Essay/teacher/add_essay2.jsp");
 	}
 

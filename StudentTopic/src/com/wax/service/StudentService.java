@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.Map;
 
 import com.wax.JavaBeen.SelectTopic_info;
+import com.wax.JavaBeen.Student_info;
 import com.wax.JavaBeen.Topic_info;
 import com.wax.dao.SelectTopicInfoDao;
+import com.wax.dao.Student_infoDao;
 import com.wax.dao.Topic_InfoDao;
 
 public class StudentService {
@@ -26,4 +28,16 @@ public class StudentService {
 		}
 		return row;
 	} 
+	public int deleteTopic(String stu_id) {
+		SelectTopicInfoDao dao=new SelectTopicInfoDao();
+		return dao.delete(stu_id);
+	}
+	public List<Map<String, Object>> searchStu(String stu_id) {
+		Student_infoDao dao=new Student_infoDao();
+		return dao.search(stu_id);
+	}
+	public int updateStudentInfo(Student_info stu) {
+		Student_infoDao dao=new Student_infoDao();
+		return dao.update(stu);
+	}
 }

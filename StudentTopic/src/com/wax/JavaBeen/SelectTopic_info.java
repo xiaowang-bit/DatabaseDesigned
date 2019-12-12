@@ -8,6 +8,9 @@ public class SelectTopic_info {
 	private String st_team_id   ;
 	private String st_stu_check   ;
 	private String st_checked   ;
+	public SelectTopic_info() {
+		super();
+	}
 	public String getSt_semater() {
 		return st_semater;
 	}

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import com.wax.JavaBeen.Student_info;
 import com.wax.dao.Student_infoDao;
 import com.wax.dao.Topic_InfoDao;
+import com.wax.service.StudentService;
 
 public class StudentSelect1Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -26,20 +27,21 @@ public class StudentSelect1Servlet extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
-		Student_infoDao dao = new Student_infoDao();
+		StudentService dao = new StudentService();
 		String stu_id=request.getParameter("stu_id");
-		List<Student_info> list = dao.search(stu_id);
+		List<Map<String, Object>> list = dao.searchStu(stu_id);
 		HttpSession session = request.getSession();
-		session.setAttribute("stu_id", list.get(0).getStu_id());
-		session.setAttribute("stu_name", list.get(0).getStu_name());
-		session.setAttribute("stu_grade", list.get(0).getStu_grade());
-		session.setAttribute("stu_sex", list.get(0).getStu_sex() );
-		session.setAttribute("stu_major", list.get(0).getStu_major());
-		session.setAttribute("stu_class", list.get(0).getStu_class());
-		session.setAttribute("stu_academy", list.get(0).getStu_academy());
-		session.setAttribute("stu_phone", list.get(0).getStu_phone());
-		session.setAttribute("stu_email", list.get(0).getStu_email());
-		session.setAttribute("stu_pwd", list.get(0).getStu_pwd());
+		session.setAttribute("stu_id", list.get(0).get("stu_id"));
+		session.setAttribute("stu_name", list.get(0).get("stu_name"));
+		session.setAttribute("stu_grade", list.get(0).get("class_grade"));
+		session.setAttribute("stu_sex", list.get(0).get("stu_sex"));
+		session.setAttribute("stu_major", list.get(0).get("class_major"));
+		session.setAttribute("stu_class", list.get(0).get("class_name"));
+		session.setAttribute("stu_academy", list.get(0).get("class_academy"));
+		session.setAttribute("stu_phone", list.get(0).get("stu_phone"));
+		session.setAttribute("stu_email", list.get(0).get("stu_email"));
+		session.setAttribute("stu_pwd", list.get(0).get("stu_pwd"));
+		session.setAttribute("stu_class_id", list.get(0).get("stu_class_id"));
 		
 		response.sendRedirect("/StudentTopic/Essay/student/stu_info.jsp");		
 	}

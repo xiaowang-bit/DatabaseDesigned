@@ -37,7 +37,7 @@ public class LoadReportServlet extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		String stu_id = request.getParameter("stu_id");
 		Student_infoDao studao=new Student_infoDao();
-		List<Student_info> stu = studao.search(stu_id);
+		List<Map<String, Object>> stu = studao.search(stu_id);
 		SelectTopicInfoDao stuselectdao=new SelectTopicInfoDao();
 		List<Map<String, Object>> search = stuselectdao.search(stu_id);
 		boolean ismultipart = ServletFileUpload.isMultipartContent(request);
@@ -62,14 +62,13 @@ public class LoadReportServlet extends HttpServlet {
                         continue;
                     }
 					//处理获取到的上传文件的文件名的路径部分只保留文件名部分
-					System.out.println(search.get(0).get("st_team_id"));
-                    filename =search.get(0).get("st_team_id")+filename.substring(filename.lastIndexOf("\\")+1);
+                    filename =filename.substring(filename.lastIndexOf("\\")+1);
                     //得到上传文件的扩展名
                     String fileExtName = filename.substring(filename.lastIndexOf(".")+1);
                     //如果需要限制上传的文件类型，那么可以通过文件的扩展名来判断上传的文件类型是否合法
 					String savePath=this.getServletContext().getRealPath("/WEB-INF/upload");
                     //得到文件的保存目录
-                    String realSavePath = makePath(stu.get(0).getStu_class(), savePath,stu.get(0).getStu_grade(),stu_id,stu.get(0).getStu_major());
+                    String realSavePath = makePath((String)stu.get(0).get("class_name"), savePath,(String)stu.get(0).get("class_grade"),(String)stu.get(0).get("class_major"),(String)search.get(0).get("st_team_id"));
                     //文件全路径
                     String filePath = realSavePath + "\\" + filename;
 					
@@ -99,10 +98,10 @@ public class LoadReportServlet extends HttpServlet {
 	
 
 	 
-    private String makePath(String stu_class,String savePath,String stu_grade,String stu_id,String stu_major){
+    private String makePath(String stu_class,String savePath,String stu_grade,String stu_major,String team_id){
         
         //构造新的保存目录
-        String dir = savePath +"\\"+stu_grade+ "\\"+stu_major+"\\"+stu_class+"\\"+stu_id;  //upload\stu_id\
+        String dir = savePath +"\\"+stu_grade+ "\\"+stu_major+"\\"+stu_class+"\\"+team_id;  //upload\stu_id\
         //File既可以代表文件也可以代表目录
         File file = new File(dir);
         //如果目录不存在

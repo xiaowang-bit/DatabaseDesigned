@@ -301,13 +301,13 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>TopicSelectUpdate</display-name>
-    <servlet-name>TopicSelectUpdate</servlet-name>
-    <servlet-class>com.wax.servlet.TopicSelectUpdate</servlet-class>
+    <display-name>TopicSelectUpdateServlet</display-name>
+    <servlet-name>TopicSelectUpdateServlet</servlet-name>
+    <servlet-class>com.wax.servlet.TopicSelectUpdateServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>TopicSelectUpdate</servlet-name>
-    <url-pattern>/TopicSelectUpdate</url-pattern>
+    <servlet-name>TopicSelectUpdateServlet</servlet-name>
+    <url-pattern>/TopicSelectUpdateServlet</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>

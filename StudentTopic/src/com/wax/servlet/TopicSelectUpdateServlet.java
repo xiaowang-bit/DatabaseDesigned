@@ -11,11 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.wax.dao.SelectTopicInfoDao;
+import com.wax.service.TeacherService;
 
-public class TopicSelectUpdate extends HttpServlet {
+public class TopicSelectUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public TopicSelectUpdate() {
+    public TopicSelectUpdateServlet() {
         super();
     }
 
@@ -26,11 +27,11 @@ public class TopicSelectUpdate extends HttpServlet {
 		
 		String topic_id = request.getParameter("topic_id");
 		String stu_id = request.getParameter("stu_id");
-		String course_id = request.getParameter("course_id");
+		String team_id = request.getParameter("st_team_id");
 		String tea_id = request.getParameter("tea_id");
 		String check = request.getParameter("st_checked");
-		SelectTopicInfoDao dao=new SelectTopicInfoDao();
-		int row = dao.update(topic_id, stu_id, course_id, tea_id,check);
+		TeacherService ts=new TeacherService();
+		int row = ts.updateCheck(topic_id, stu_id, tea_id, team_id, check);
 		if(row>0)
 		{
 			response.sendRedirect("success.jsp");
@@ -41,7 +42,6 @@ public class TopicSelectUpdate extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
