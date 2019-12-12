@@ -13,7 +13,8 @@
 		    	font-size: 14px!important;
 		    }
 			body{
-				background:url(../img/BG.jpg) repeat;
+				background:url(../img/BG4.jpg);
+				background-size:100%;
 			}
 		</style>
 		<script type="text/javascript"> 

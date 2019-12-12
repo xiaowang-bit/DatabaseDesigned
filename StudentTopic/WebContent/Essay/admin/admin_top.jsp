@@ -38,7 +38,7 @@
 			.label_{
 				
 				font-size: 16px;
-				 margin-right: 40px;
+				margin-right: 40px;
 				height: 40px; 
 				line-height: 30px;
 				letter-spacing: 1px;
@@ -64,7 +64,7 @@
 				<img src="../img/logo_.png" id="img1"/>
 			</div>
 			<div id="left">
-				<h2>ThesisSelect</h2>
+				<h2>TopicSelect</h2>
 			</div>
 			
 			<div id="right">

@@ -25,9 +25,16 @@ public class TopicToTeacherServlet extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=UTF-8");	
 		
+		String cPage = request.getParameter("currentPage");
+		int currentPage=1;
+		if(cPage==null) {
+			currentPage=1;
+		}else {	
+			currentPage=Integer.parseInt(cPage);
+		}
 		String tea_id = request.getParameter("tea_id");
 		Topic_InfoDao dao=new Topic_InfoDao();
-		List<Map<String, Object>> topics = dao.searchAllByTea(tea_id);
+		List<Map<String, Object>> topics = dao.searchAllByTea(tea_id,currentPage);
 		HttpSession session = request.getSession();
 		session.setAttribute("topics", topics);
 		Course_infoDao cdao=new Course_infoDao();

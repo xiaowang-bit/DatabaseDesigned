@@ -22,9 +22,9 @@
 			<table class="table table-bordered table-hover">
 				<thead>
 					<tr>
+						<th>学期</th>
 						<th>课程号</th>
 						<th>课程名</th>
-						<th>学期</th>
 						<th>题号</th>
 						<th>题名</th>
 						<th>限制人数</th>
@@ -35,16 +35,16 @@
 				<tbody>
 					<c:forEach var = "item" items="${sessionScope.topics }">
 						<tr>
+							<td>${item.topic_semater }</td>
 					   	 	<td>${item.course_id }</td>
 					   	 	<td>${item.course_name }</td>
-							<td>${item.topic_semater }</td>
 							<td>${item.topic_id}</td>
 					   	 	<td>${item.topic_name }</td>
 					   	 	<td>${item.topic_limit_stu }</td>
 					   	 	<td>${item.topic_content }</td>
 					    	<td>
-					    		<a href="#" onclick="Showinfo('${item.TOPIC_TEA_ID}','${item.TOPIC_COURSE_ID}','${item.topic_id}','${item.tea_name}','${item.course_name}','${item.topic_name}','${item.topic_content}','${item.topic_academy}','${item.topic_limit_stu}','${item.topic_semater }')">详情</a>
-					    		<a href="#" onclick="Update('${item.TOPIC_TEA_ID}','${item.TOPIC_COURSE_ID}','${item.topic_id}','${item.tea_name}','${item.course_name}','${item.topic_name}','${item.topic_content}','${item.topic_academy}','${item.topic_limit_stu}','${item.topic_semater }')">修改</a>
+					    		<a href="#" onclick="Showinfo('${item.TOPIC_TEA_ID}','${item.TOPIC_COURSE_ID}','${item.topic_id}','${item.tea_name}','${item.course_name}','${item.topic_name}','${item.topic_content}','${item.topic_course_id }','${item.topic_limit_stu}','${item.topic_semater }')">详情</a>
+					    		<a href="#" onclick="Update('${item.TOPIC_TEA_ID}','${item.TOPIC_COURSE_ID}','${item.topic_id}','${item.tea_name}','${item.course_name}','${item.topic_name}','${item.topic_content}','${item.topic_course_id }','${item.topic_limit_stu}','${item.topic_semater }')">修改</a>
 					    		<a href="#" onclick="Delete('${item.tea_id}','${item.course_id}','${item.topic_id}')">删除</a>
 					    	</td>
 						</tr>
@@ -146,13 +146,6 @@
         					</div>
         				</div>
         				<div class="form-group ">
-        					<label class="control-label col-sm-2">学院</label>
-        					<div class="col-sm-6">
-        						<input type="text"class="form-control"
-        							id="topic_academy1" name="topic_academy"/>
-        					</div>
-        				</div>
-        				<div class="form-group ">
         					<label class="control-label col-sm-2">限制人数</label>
         					<div class="col-sm-6">
         						<input type="text"class="form-control"
@@ -236,13 +229,6 @@
         					</div>
         				</div>
         				<div class="form-group ">
-        					<label class="control-label col-sm-2">学院</label>
-        					<div class="col-sm-6">
-        						<input type="text"class="form-control"
-        							id="topic_academy" name="topic_academy"readonly="readonly"/>
-        					</div>
-        				</div>
-        				<div class="form-group ">
         					<label class="control-label col-sm-2">限制人数</label>
         					<div class="col-sm-6">
         						<input type="text"class="form-control"
@@ -311,13 +297,6 @@
         					</div>
         				</div>
         				<div class="form-group ">
-        					<label class="control-label col-sm-2">学院</label>
-        					<div class="col-sm-6">
-        						<input type="text"class="form-control"
-        							id="topic_academy1" name="topic_academy"/>
-        					</div>
-        				</div>
-        				<div class="form-group ">
         					<label class="control-label col-sm-2">限制人数</label>
         					<div class="col-sm-6">
         						<input type="text"class="form-control"
@@ -381,13 +360,13 @@
 	<script type="text/javascript" src="../js/jquery-3.2.1.min.js" charset="UTF-8"></script>
 	<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js" charset="UTF-8"></script>
 	<script type="text/javascript">
-		function Showinfo(tea_id,course_id,topic_id,tea_name,course_name,topic_name,topic_content,topic_academy,topic_limit_stu,topic_semater )
+		function Showinfo(tea_id,course_id,topic_id,tea_name,course_name,topic_name,topic_content,topic_course_id ,topic_limit_stu,topic_semater )
 		{
 			jQuery("#model_showinfo").modal();
 			jQuery("#tea_id").val(tea_id);
 			jQuery("#topic_name").val(topic_name);
 			jQuery("#topic_content").val(topic_content);
-			jQuery("#topic_academy").val(topic_academy);
+			jQuery("#topic_course_id ").val(topic_course_id );
 			jQuery("#topic_limit_stu").val(topic_limit_stu);
 			jQuery("#topic_semater").val(topic_semater);
 			jQuery("#tea_name").val(tea_name);
@@ -395,13 +374,13 @@
 			jQuery("#course_id").val(course_id);
 			jQuery("#topic_id").val(topic_id);
 		}
-		function Update(tea_id,course_id,topic_id,tea_name,course_name,topic_name,topic_content,topic_academy,topic_limit_stu,topic_semater )
+		function Update(tea_id,course_id,topic_id,tea_name,course_name,topic_name,topic_content,topic_course_id ,topic_limit_stu,topic_semater )
 		{
 			jQuery("#model_update").modal();
 			jQuery("#tea_id1").val(tea_id);
 			jQuery("#topic_name1").val(topic_name);
 			jQuery("#topic_content1").val(topic_content);
-			jQuery("#topic_academy1").val(topic_academy);
+			jQuery("#topic_course_id1").val(topic_course_id );
 			jQuery("#topic_limit_stu1").val(topic_limit_stu);
 			jQuery("#topic_semater1").val(topic_semater);
 			jQuery("#tea_name1").val(tea_name);
