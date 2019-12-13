@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.ResultSetHandler;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.MapListHandler;
 
 import com.neu.dao.BaseDao;
@@ -66,6 +67,17 @@ public class Teacher_InfoDao{
 			e.printStackTrace();
 		}		return list;
 	}
+	public Teacher_info searchBytea_id(String tea_id)
+	{
+		Teacher_info list = null;
+		String sql = "select * from teacher_info where tea_id=?";
+		QueryRunner qr=new QueryRunner(JdbcUtils.getDataSource());
+		try {
+			list = qr.query(sql,new BeanHandler<Teacher_info>(Teacher_info.class),tea_id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}		return list;
+	}
 	public List<Map<String, Object>> checkLogin(String no,String pwd)
 	{
 		List<Map<String, Object>> list = null;
@@ -102,8 +114,7 @@ public class Teacher_InfoDao{
 		}		return list;
 	}
 	public  int getTotalCount() {
-		String sql = "select count(1) from admin_info ";
+		String sql = "select count(1) from teacher_info ";
 		return JdbcUtils.getTotalCount(sql);
-		
 	}
 }

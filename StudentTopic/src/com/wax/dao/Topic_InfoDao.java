@@ -95,13 +95,13 @@ public class Topic_InfoDao {
 		
 		return row;
 	}
-	public int update( String topic_name ,String topic_content  ,String topic_limit_stu,String topic_semater, String tea_id,String course_id,String topic_id){
+	public int update(Topic_info topic){
 		int row=0;
 		String sql="update topic_info "
 				+ "set topic_name =?,topic_content =?,topic_limit_stu =?,topic_semater =?"
 				+ " where topic_tea_id=? and topic_course_id=? and topic_id=? ";
 		QueryRunner qr=new QueryRunner(DBCPUtilsService.getDataSource());
-		Object[] obs= {topic_name,topic_content,topic_limit_stu,topic_semater,tea_id,course_id,topic_id};
+		Object[] obs= {topic.getTopic_name(),topic.getTopic_content(),topic.getTopic_limit_stu(),topic.getTopic_semater(),topic.getTopic_tea_id(),topic.getTopic_course_id(),topic.getTopic_id()};
 		try {
 			row = qr.update(sql,obs);
 		} catch (SQLException e) {
@@ -110,13 +110,13 @@ public class Topic_InfoDao {
 		
 		return row;
 	}
-	public int insert( String topic_name ,String topic_content  ,String topic_limit_stu,String topic_semater, String tea_id,String course_id,String topic_id){
+	public int insert( Topic_info topic){
 		int row=0;
-		String sql="insert into topic_info(topic_name,topic_content,topic_academy,topic_limit_stu,topic_semater,"
+		String sql="insert into topic_info(topic_name,topic_content,topic_limit_stu,topic_semater,"
 				+ " topic_tea_id , topic_course_id , topic_id ) "
 				+ "values( ?,?,?,?,?,?,? )";
 		QueryRunner qr=new QueryRunner(DBCPUtilsService.getDataSource());
-		Object[] obs= {topic_name,topic_content,topic_limit_stu,topic_semater,tea_id,course_id,topic_id};
+		Object[] obs= {topic.getTopic_name(),topic.getTopic_content(),topic.getTopic_limit_stu(),topic.getTopic_semater(),topic.getTopic_tea_id(),topic.getTopic_course_id(),topic.getTopic_id()};
 		try {
 			row = qr.update(sql,obs);
 		} catch (SQLException e) {

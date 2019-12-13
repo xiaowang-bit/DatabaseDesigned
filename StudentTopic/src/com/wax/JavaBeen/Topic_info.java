@@ -5,16 +5,14 @@ public class Topic_info {
 	private String topic_name   ;
 	private String topic_content   ;
 	private String topic_tea_id   ;
+	private String topic_semater   ;
 	private String topic_course_id   ;
 	private String topic_limit_stu   ;
-	public String getTopic_id() {
-		return topic_id;
-	}
 	public Topic_info() {
 		super();
 	}
 	public Topic_info(String topic_id, String topic_name, String topic_content, String topic_tea_id,
-			String topic_course_id, String topic_course, String topic_limit_stu, String topic_semater) {
+			String topic_course_id, String topic_limit_stu, String topic_semater) {
 		super();
 		this.topic_id = topic_id;
 		this.topic_name = topic_name;
@@ -29,6 +27,9 @@ public class Topic_info {
 		return "Topic_info [topic_id=" + topic_id + ", topic_name=" + topic_name + ", topic_content=" + topic_content
 				+ ", topic_tea_id=" + topic_tea_id + ", topic_course_id=" + topic_course_id + ", topic_course="
 				+ ", topic_limit_stu=" + topic_limit_stu + ", topic_semater=" + topic_semater + "]";
+	}
+	public String getTopic_id() {
+		return topic_id;
 	}
 	public void setTopic_id(String topic_id) {
 		this.topic_id = topic_id;
@@ -70,6 +71,5 @@ public class Topic_info {
 	public void setTopic_course_id(String topic_course_id) {
 		this.topic_course_id = topic_course_id;
 	}
-	private String topic_semater   ;
 
 }

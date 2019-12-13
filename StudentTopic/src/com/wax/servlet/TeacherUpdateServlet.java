@@ -34,6 +34,7 @@ public class TeacherUpdateServlet extends HttpServlet {
 		tea.setTea_email(request.getParameter("tea_email"));
 		Teacher_InfoDao dao = new Teacher_InfoDao();
 		int row = dao.update(tea);
+		
 		if(row>0)
 		{
 			response.sendRedirect("success.jsp");

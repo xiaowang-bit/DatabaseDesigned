@@ -6,7 +6,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.wax.JavaBeen.Topic_info;
 import com.wax.dao.Topic_InfoDao;
+import com.wax.service.TeacherService;
 
 public class TopicUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -22,18 +24,19 @@ public class TopicUpdateServlet extends HttpServlet {
 		
 		String topic_name = request.getParameter("topic_name");
 		String topic_content = request.getParameter("topic_content");
-		String topic_academy = request.getParameter("topic_academy");
 		String topic_limit_stu = request.getParameter("topic_limit_stu");
 		String topic_semater = request.getParameter("topic_semater");
-		String tea_id = request.getParameter("tea_id");
+		String topic_tea_id = request.getParameter("tea_id");
 		String topic_id = request.getParameter("topic_id");
-		String course_id = request.getParameter("course_id");
-		if (tea_id==null||topic_id==null||course_id==null) {
+		String topic_course_id = request.getParameter("course_id");
+		if (topic_tea_id==null||topic_id==null||topic_course_id==null) {
 			response.sendRedirect("fail.jsp");
 		}
 		else {
-			Topic_InfoDao dao=new Topic_InfoDao();
-			int row = dao.update(topic_name, topic_content, topic_academy,topic_limit_stu, topic_semater,tea_id, course_id, topic_id);
+			Topic_info topic=new Topic_info( topic_id,  topic_name,  topic_content,  topic_tea_id,
+					 topic_course_id,  topic_limit_stu,  topic_semater);
+			TeacherService dao=new TeacherService();
+			int row = dao.updateTopic(topic);
 			if(row>0)
 			{
 				response.sendRedirect("success.jsp");
@@ -41,8 +44,7 @@ public class TopicUpdateServlet extends HttpServlet {
 			else{
 				response.sendRedirect("fail.jsp");
 			}
-		}
-			
+		}	
 	}
 	
 

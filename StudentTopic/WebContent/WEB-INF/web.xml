@@ -389,4 +389,14 @@
     <servlet-name>StudentSelectByteaIdServlet</servlet-name>
     <url-pattern>/StudentSelectByteaIdServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TeacherInfoServlet</display-name>
+    <servlet-name>TeacherInfoServlet</servlet-name>
+    <servlet-class>com.wax.servlet.TeacherInfoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TeacherInfoServlet</servlet-name>
+    <url-pattern>/TeacherInfoServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -77,7 +77,7 @@
 			<div id="center">
 				<label class="label_"  style="margin: 0px;">Welcome Teacher:</label>
 			    <label class="label_" >【${sessionScope.login_tea.tea_name}】</label>
- 				<a href="tea_inf.jsp" target="center"  >修改个人信息</a>
+ 				<a href="/StudentTopic/TeacherInfoServlet?tea_id=${sessionScope.login_tea.tea_id}" target="center"  >修改个人信息</a>
 			</div>
 		</div>
 	</body>
