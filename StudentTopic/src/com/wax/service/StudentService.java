@@ -8,6 +8,7 @@ import com.wax.JavaBeen.Student_info;
 import com.wax.JavaBeen.Topic_info;
 import com.wax.dao.SelectTopicInfoDao;
 import com.wax.dao.Student_infoDao;
+import com.wax.dao.Team_infoDao;
 import com.wax.dao.Topic_InfoDao;
 
 public class StudentService {
@@ -39,5 +40,9 @@ public class StudentService {
 	public int updateStudentInfo(Student_info stu) {
 		Student_infoDao dao=new Student_infoDao();
 		return dao.update(stu);
+	}
+	public int updateReport(String team_id,String status) {
+		Team_infoDao dao=new Team_infoDao();
+		return dao.updateTeam_report_status(team_id, status);
 	}
 }

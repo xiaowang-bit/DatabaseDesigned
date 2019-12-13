@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.wax.dao.SelectTopicInfoDao;
+import com.wax.service.TeacherService;
 
 public class ListClassServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -24,8 +25,8 @@ public class ListClassServlet extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=UTF-8");
 		String tea_id=request.getParameter("tea_id");
-		SelectTopicInfoDao dao = new SelectTopicInfoDao();
-		List<Map<String, Object>> list = dao.searchByClass(tea_id);
+		TeacherService dao = new TeacherService();
+		List<Map<String, Object>> list = dao.searchGroupByTeam(tea_id);
 		HttpSession session = request.getSession();
 		session.setAttribute("sub", list);
 		response.sendRedirect("/StudentTopic/Essay/teacher/class.jsp");		

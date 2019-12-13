@@ -24,11 +24,10 @@
 				<thred>
 					<tr>
 						<th>年级</th>
-						<th>专业</th>
-						<th>班级</th>
 						<th>课程</th>
-						<th>分组编号</th>
 						<th>分组名</th>
+						<th>组长</th>
+						<th>提交状态</th>
 						<th>操作</th>
 					</tr>
 				</thred>
@@ -36,12 +35,11 @@
 		        <c:forEach var="item" items="${sessionScope.sub }">
 		        	<tr>
 			
-			    	<td>${item.stu_grade}</td>
-			    	<td>${item.stu_major}</td>
-			    	<td>${item.stu_class}</td>
+			    	<td>${item.course_grade}</td>
 			    	<td>${item.course_name}</td>
-			    	<td>${item.st_team_id}</td>
 			    	<td>${item.team_name}</td>
+			    	<td>${item.STU_NAME}</td>
+			    	<td>${item.team_report_status}</td>
 			    	<td>
 			    		<a href="/StudentTopic/ListFileServlet?stu_id=${item.stu_id}">下载 </a>
 			    	</td>

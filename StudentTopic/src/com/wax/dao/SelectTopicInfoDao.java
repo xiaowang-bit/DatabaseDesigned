@@ -56,20 +56,7 @@ public class SelectTopicInfoDao {
 		
 		return list;
 	}
-	public List<Map<String, Object>> searchByClass(String tea_id){
-		List<Map<String, Object>> list=null;
-		String sql="select * from select_topic_info,topic_info,team_info,student_info,course_info "
-				+ " where st_course_id=course_id and st_topic_id=topic_id and st_stu_id=stu_id "
-				+ "and team_id=st_team_id and st_tea_id=? and st_checked ='通过' and st_stu_check='组长'";
-		QueryRunner qr=new QueryRunner(DBCPUtilsService.getDataSource());
-		try {
-			list = qr.query(sql,new MapListHandler(),tea_id);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return list;
-	}
+
 	public List<Map<String, Object>> search(String st_stu_id){
 		List<Map<String, Object>> list=null;
 		String sql="select * from select_topic_info,topic_info,teacher_info,student_info where st_tea_id=tea_id and st_topic_id=topic_id and stu_id=st_stu_id and st_stu_id=?";

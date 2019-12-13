@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 import com.wax.JavaBeen.Student_info;
+import com.wax.dao.SelectTopicInfoDao;
 import com.wax.dao.Student_infoDao;
 
 public class ListFileServlet extends HttpServlet {
@@ -31,22 +32,22 @@ public class ListFileServlet extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		String stu_id=request.getParameter("stu_id");
 		Student_infoDao studao=new Student_infoDao();
-		List<Student_info> stu = studao.search(stu_id);
+		SelectTopicInfoDao stuselectdao=new SelectTopicInfoDao();
+		List<Map<String, Object>> search = stuselectdao.search(stu_id);
+		List<Map<String, Object>> stu = studao.search(stu_id);
 		
 		//上传的文件都是保存在/WEB-INF/upload目录下的子目录当中
 		String fileSaveRootPath=this.getServletContext().getRealPath("/WEB-INF/upload");
-		//通过文件名找出文件的所在目录
-		String realSavePath = makePath(stu.get(0).getStu_class(), fileSaveRootPath,stu.get(0).getStu_grade(),stu_id,stu.get(0).getStu_major());
+        String realSavePath = makePath((String)stu.get(0).get("class_name"), fileSaveRootPath,(String)stu.get(0).get("class_grade"),(String)stu.get(0).get("class_major"),(String)search.get(0).get("st_team_id"));
 		File filesave=new File(realSavePath);
 		File filesaves[] = filesave.listFiles();
 		for(File file : filesaves){
-			file = new File(realSavePath + "\\" + file);
 			String realname = file.getName();
-			//得到要下载的文件
+			System.out.println(realname);
 			//如果文件不存在
 			if(!file.exists()){
 				request.setAttribute("message", "您要下载的资源已被删除！！");
-				request.getRequestDispatcher("/message.jsp").forward(request, response);
+				request.getRequestDispatcher("fail.jsp").forward(request, response);
 				return;
 			}
 			else {
@@ -69,6 +70,7 @@ public class ListFileServlet extends HttpServlet {
 				in.close();
 				//关闭输出流
 				out.close();
+				response.sendRedirect("successu.jsp");
 			}
 		}
 	}
@@ -88,10 +90,10 @@ public class ListFileServlet extends HttpServlet {
 		}
 		return dir;
 	}
-	private String makePath(String stu_class,String savePath,String stu_grade,String stu_id,String stu_major){
+	private String makePath(String stu_class,String savePath,String stu_grade,String stu_major,String team_id){
         
         //构造新的保存目录
-        String dir = savePath +"\\"+stu_grade+ "\\"+stu_major+"\\"+stu_class+"\\"+stu_id;  //upload\stu_id\
+        String dir = savePath +"\\"+stu_grade+ "\\"+stu_major+"\\"+stu_class+"\\"+team_id;  //upload\stu_id\
         //File既可以代表文件也可以代表目录
         File file = new File(dir);
         //如果目录不存在

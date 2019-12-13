@@ -8,6 +8,7 @@ import com.wax.JavaBeen.Teacher_info;
 import com.wax.JavaBeen.Topic_info;
 import com.wax.dao.SelectTopicInfoDao;
 import com.wax.dao.Teacher_InfoDao;
+import com.wax.dao.Team_infoDao;
 import com.wax.dao.Topic_InfoDao;
 
 public class TeacherService {
@@ -45,5 +46,9 @@ public class TeacherService {
 		Teacher_InfoDao dao=new Teacher_InfoDao();
 		Teacher_info search = dao.searchBytea_id(tea_id);
 		return search;
+	}
+	public List<Map<String, Object>> searchGroupByTeam(String tea_id) {
+		Team_infoDao dao=new Team_infoDao();
+		return dao.searchGroupByTeam(tea_id);
 	}
 }

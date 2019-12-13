@@ -20,6 +20,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import com.wax.JavaBeen.Student_info;
 import com.wax.dao.SelectTopicInfoDao;
 import com.wax.dao.Student_infoDao;
+import com.wax.service.StudentService;
 
 
 
@@ -70,14 +71,16 @@ public class LoadReportServlet extends HttpServlet {
                     //得到文件的保存目录
                     String realSavePath = makePath((String)stu.get(0).get("class_name"), savePath,(String)stu.get(0).get("class_grade"),(String)stu.get(0).get("class_major"),(String)search.get(0).get("st_team_id"));
                     //文件全路径
-                    String filePath = realSavePath + "\\" + filename;
-					
+                    String filePath = realSavePath + "\\" + filename;	
 					File file=new File(realSavePath,filename);
 					fileItem.write(file);
 					File f=new File(filePath);
 					if(f.exists())
 					{
-						response.sendRedirect("success.jsp");
+						StudentService ss=new StudentService();
+						int row = ss.updateReport((String)search.get(0).get("st_team_id"), "提交");
+						if (row>0)
+							response.sendRedirect("success.jsp");
 					}
 					else{
 						response.sendRedirect("fail.jsp");
