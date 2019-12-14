@@ -8,6 +8,7 @@ import java.util.Map;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.ResultSetHandler;
 import org.apache.commons.dbutils.handlers.BeanHandler;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.MapListHandler;
 
 import com.neu.dao.BaseDao;
@@ -90,13 +91,17 @@ public class Teacher_InfoDao{
 			e.printStackTrace();
 		}		return list;
 	}
-	public List<Map<String, Object>> findall()
+	public List<Teacher_info> searchAll(int currentPage)
 	{
-		List<Map<String, Object>> list = null;
-		String sql="select *from teacher_info";
-		QueryRunner qr=new QueryRunner();
+		List<Teacher_info> list = null;
+		String sql="select * from ("
+				+ "select rownum r,t.*from teacher_info t"
+				+ " where rownum <=?)"
+				+ " where r>=?";
+		QueryRunner qr=new QueryRunner(JdbcUtils.getDataSource());
+		Object[]ob= {currentPage*8,(currentPage-1)*8+1};
 		try {
-			list = qr.query(con,sql,new MapListHandler());
+			list = qr.query(sql,new BeanListHandler<Teacher_info>(Teacher_info.class),ob);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -33,7 +33,7 @@
 					</tr>
 				</thred>
 		        <tbody>
-		        <c:forEach var="item" items="${sessionScope.teas }">
+		        <c:forEach var="item" items="${sessionScope.teas.objectList }">
 		        	<tr>
 			
 			    	<td>${item.tea_id  }</td>
@@ -56,6 +56,10 @@
 		<a href="Add_tea.html">
 			<button>添加老师</button>
 		</a>
+		<a href="/StudentTopic/TeaSelectServlet?currentPage=1">首页</a>
+		<a href="/StudentTopic/TeaSelectServlet?currentPage=${sessionScope.teas.currentPage==1?1:sessionScope.teas.currentPage-1}">上一页</a>
+		<a href="/StudentTopic/TeaSelectServlet?currentPage=${sessionScope.teas.currentPage>sessionScope.teas.totalPage?sessionScope.teas.currentPage%sessionScope.teas.totalPage+1:sessionScope.teas.totalPage}">下一页</a>
+		<a href="/StudentTopic/TeaSelectServlet?currentPage=${sessionScope.teas.totalPage}">尾页</a>
 	</div>	
 		<!-- 删除操作的模态框，对话框 -->
 		<form action="/StudentTopic/TeacherDeleteServlet" method="post" class="form-horizontal">

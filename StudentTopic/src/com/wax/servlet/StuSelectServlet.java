@@ -1,6 +1,7 @@
 package com.wax.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -10,7 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.wax.dao.Student_infoDao;
+
+import com.wax.JavaBeen.Student_info;
+import com.wax.service.AdminService;
+import com.wax.utils.BeanUtil;
+import com.wax.utils.Page;
 
 
 public class StuSelectServlet extends HttpServlet {
@@ -24,11 +29,17 @@ public class StuSelectServlet extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=UTF-8");
-		
-		Student_infoDao dao = new Student_infoDao();
-		List<Map<String, Object>> list = dao.findall();
+		String cpage = request.getParameter("currentPage");
+		if(cpage==null) {
+			cpage="1";
+		}
+		int currentPage=Integer.parseInt(cpage);
+		AdminService dao = new AdminService();
+		List<Map<String, Object>> list = dao.searchAllStudent(currentPage);
+		int totalCount = dao.getStudetnCount();
+		Page page=new Page(list,totalCount,currentPage);
 		HttpSession session = request.getSession();
-		session.setAttribute("stus", list);
+		session.setAttribute("stus", page);
 		response.sendRedirect("/StudentTopic/Essay/admin/stus.jsp");
 	}
 

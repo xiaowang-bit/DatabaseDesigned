@@ -26,24 +26,24 @@
 						<th>学号</th>
 						<th>姓名</th>
 						<th>密码</th>
-						<th>学院</th>
 						<th>专业</th>
+						<th>班级号</th>
 						<th>班级</th>
 						<th>操作</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var = "item" items="${sessionScope.stus }">
+					<c:forEach var = "item" items="${sessionScope.stus.objectList }">
 						<tr>
 							<td>${item.stu_id }</td>
 							<td>${item.stu_name }</td>
 					   	 	<td>${item.stu_pwd }</td>
-					   	 	<td>${item.stu_academy }</td>
-					   	 	<td>${item.stu_major }</td>
-					   	 	<td>${item.stu_class }</td>
+					   	 	<td>${item.class_major }</td>
+					   	 	<td>${item.class_id }</td>
+					   	 	<td>${item.class_name }</td>
 					    	<td>
-					    	<a href="#" onclick="showInfo('${item.stu_id}','${item.stu_name}','${item.stu_grade}','${item.stu_sex}','${item.stu_major}','${item.stu_class}','${item.stu_academy}','${item.stu_phone}','${item.stu_email}','${item.stu_pwd}')">详情</a>
-					    	<a href="#" onclick="showUpdate('${item.stu_id}','${item.stu_name}','${item.stu_class}','${item.stu_major}','${item.stu_pwd}','${item.stu_academy}')">修改</a>
+					    	<a href="#" onclick="showInfo('${item.stu_id}','${item.stu_name}','${item.class_grade}','${item.stu_sex}','${item.class_major}','${item.class_name}','${item.class_academy}','${item.stu_phone}','${item.stu_email}','${item.stu_pwd}')">详情</a>
+					    	<a href="#" onclick="showUpdate('${item.stu_id}','${item.stu_name}','${item.class_name}','${item.class_major}','${item.stu_pwd}','${item.class_name}')">修改</a>
 					    	<a href="#" onclick="showDelete('${item.stu_id}')">删除</a>
 					    </td>
 						</tr>
@@ -52,13 +52,16 @@
 			</table>
 		</div>
 		<div class="addstu" >
-				<a href="stu_add.html">
+				<a href="/StudentTopic/SearchClassServlet">
 					<button>添加单个学生</button>
 				</a>
 				<a href="stus_add.html">
    					<button>增加多个学生</button>
 				</a>
-				
+				<a href="/StudentTopic/StuSelectServlet?currentPage=1">首页</a>
+				<a href="/StudentTopic/StuSelectServlet?currentPage=${sessionScope.stus.currentPage==1?1:sessionScope.stus.currentPage-1}">上一页</a>
+				<a href="/StudentTopic/StuSelectServlet?currentPage=${sessionScope.stus.currentPage>sessionScope.stus.totalPage?sessionScope.stus.currentPage%sessionScope.stus.totalPage+1:sessionScope.stus.totalPage}">下一页</a>
+				<a href="/StudentTopic/StuSelectServlet?currentPage=${sessionScope.stus.totalPage}">尾页</a>
 		</div>	
 	<form action="/StudentTopic/StudentDeleteServlet" method="post" class="form-horizontal">
 		<input type="hidden" name="user_no" id="user_no">

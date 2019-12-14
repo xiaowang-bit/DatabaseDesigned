@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -10,16 +13,24 @@
 		</style>
 	</head>
 	<body>
+					
 		<div id="wrapper">
 			<div id="wrappertop"></div>
 			<div id="wrappermiddle">
 				<h2>Add Student</h2>
 				<br /><br /><br />
 	      		<form action="/StudentTopic/StudentAdd" method="post" >
+	      		选择添加学生所在的班级：
+				<select name="class_id" > 
+					<c:forEach var = "item" items="${sessionScope.classes }">
+							<OPTION value="${item.class_id }">${item.class_grade}${item.class_major}${item.class_name}</OPTION> 
+					</c:forEach>
+				</select>
+				<a href="class_add.html">添加班级</a>
 				<div class="addstu">
 					<div class="inputleft"></div>
 					<div class="inputmiddle">
-						<input type="text" name="stu_id" class="url" placeholder="学生编号">
+						<input type="text" name="stu_id" class="url" placeholder="学生学号">
 					</div>
 					<div class="inputright"></div>
 				</div>
@@ -32,13 +43,6 @@
 					<div class="inputright"></div>
 				</div>
 				
-				<div class="addstu">
-					<div class="inputleft"></div>
-					<div class="inputmiddle">
-						<input type="text" name="stu_grade" class="url" placeholder="学生年级">
-					</div>
-					<div class="inputright"></div>
- 				</div>
  				
  				<div class="addstu">
 					<div class="inputleft"></div>
@@ -48,22 +52,8 @@
 					<div class="inputright"></div>
  				</div>
 					
-				<div class="addstu">
-					<div class="inputleft"></div>
-					<div class="inputmiddle">
-						<input type="text" name="stu_major" class="url" placeholder="学生专业">
-					</div>
-					<div class="inputright"></div>
-				</div>
+
 				
-				<div class="addstu">
-					<div class="inputleft"></div>
-					<div class="inputmiddle">
-						<input type="text" name="stu_class" class="url" placeholder="学生班级">
-					</div>
-					<div class="inputright"></div>
-				</div>
-			
 				<div class="addstu">
 					<div class="inputleft"></div>
 					<div class="inputmiddle">

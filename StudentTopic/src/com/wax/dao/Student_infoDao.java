@@ -20,17 +20,18 @@ import com.wax.service.DBCPUtilsService;
 import com.wax.utils.JdbcUtils;
 
 public class Student_infoDao{
-	public int insert(Object[]ob)
+	public int insert(Student_info stu)
 	{
-		int str = 0;
-		String sql = "insert into t_student_info values(?,?,?,?)";
+		int row = 0;
+		String sql = "insert into student_info values(?,?,?,?,?,?,?)";
 		QueryRunner qr=new QueryRunner(DBCPUtilsService.getDataSource());
 		try {
-			str = qr.update(sql,ob);
+			Object[] ob= {stu.getStu_id(), stu.getStu_name(), stu.getStu_class_id(), stu.getStu_sex(), stu.getStu_phone(), stu.getStu_email(), stu.getStu_pwd()};
+			row = qr.update(sql,ob);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return str;
+		return row;
 	}
 	public int update(Student_info stu)
 	{
@@ -88,13 +89,16 @@ public class Student_infoDao{
 		return list;
 	}
 	
-	public List<Map<String, Object>> findall()
+	public List<Map<String, Object>> searchByPage(int currentPage)
 	{
 		List<Map<String, Object>> list = null;
 		QueryRunner qr=new QueryRunner(JdbcUtils.getDataSource());
-		String sql="select *from Student_info";
+		String sql="select *from(select rownum r,s.*,c.*from Student_info s ,class_info c "
+				+ "where rownum<= ? and class_id=stu_class_id)"
+				+ "where r>=?";
+		Object[]ob= {currentPage*8,(currentPage-1)*8+1};
 		try {
-			list = qr.query(sql,new MapListHandler());
+			list = qr.query(sql,new MapListHandler(),ob);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

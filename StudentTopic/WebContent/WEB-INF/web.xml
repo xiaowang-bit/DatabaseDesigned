@@ -399,4 +399,14 @@
     <servlet-name>TeacherInfoServlet</servlet-name>
     <url-pattern>/TeacherInfoServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SearchClassServlet</display-name>
+    <servlet-name>SearchClassServlet</servlet-name>
+    <servlet-class>com.wax.servlet.SearchClassServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SearchClassServlet</servlet-name>
+    <url-pattern>/SearchClassServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

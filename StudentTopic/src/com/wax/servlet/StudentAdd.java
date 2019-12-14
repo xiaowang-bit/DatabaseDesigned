@@ -6,7 +6,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.wax.JavaBeen.Student_info;
 import com.wax.dao.Student_infoDao;
+import com.wax.service.AdminService;
 
 public class StudentAdd extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -19,16 +21,14 @@ public class StudentAdd extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		String stu_id = request.getParameter("stu_id");
 		String stu_name = request.getParameter("stu_name");
-		String stu_grade = request.getParameter("stu_grade");
+		String stu_class_id = request.getParameter("class_id");
 		String stu_sex = request.getParameter("stu_sex");
-		String stu_class = request.getParameter("stu_class");
 		String stu_phone = request.getParameter("stu_phone");
 		String stu_email = request.getParameter("stu_email");
 		String stu_pwd = request.getParameter("stu_pwd");
-		Student_infoDao dao = new Student_infoDao();
-		int row = 0;
-		Object[]ob= {stu_id, stu_name, stu_grade, stu_sex,stu_class,stu_phone,stu_email,stu_pwd};
-		row = dao.insert(ob);
+		Student_info stu=new Student_info(stu_id, stu_name, stu_class_id, stu_sex, stu_phone, stu_email, stu_pwd);
+		AdminService dao = new AdminService();
+		int row = dao.addStudent(stu);
 		if(row>0)
 		{
 			response.sendRedirect("success.jsp");

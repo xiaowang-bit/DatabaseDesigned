@@ -40,6 +40,6 @@ public class Page {
 		this.objectList = objectList;
 		this.totalCount = totalCount;
 		this.currentPage = currentPage;
-		this.totalPage =  this.totalCount%8==0?this.totalCount/8:this.totalCount/8+1;
+		this.totalPage =  this.totalCount%8==0?this.totalCount/8:(this.totalCount/8+1);
 	}
 }
