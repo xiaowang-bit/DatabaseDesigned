@@ -13,7 +13,7 @@
 -- 管理员表
 --  ----------------------------
 CREATE TABLE admin_info (
-  admin_id varchar(5) NOT NULL,
+  admin_id varchar(20) NOT NULL,
   admin_name varchar(30) not NULL,
   admin_sex varchar(4) DEFAULT '男' check(admin_sex in('男','女')),
   admin_academy varchar(100) DEFAULT NULL,
@@ -35,7 +35,7 @@ INSERT INTO admin_info VALUES ('D0004', '徐小强', '男','楚才学院','副教授','1461
 -- 班级信息表
 --  ----------------------------
 CREATE TABLE class_info (
-  class_id varchar(10),
+  class_id varchar(20),
   class_grade varchar(20) NOT NULL,
   class_name varchar(50) not NULL,
   class_major varchar(50) DEFAULT NULL,
@@ -52,7 +52,7 @@ INSERT INTO class_info VALUES ('CS003','2017','1701班', '信安','计信学院');
 -- 课程信息表
 -- ----------------------------
 CREATE TABLE course_info (
-  course_id varchar(10) NOT NULL,
+  course_id varchar(20) NOT NULL,
   course_name varchar(50) not NULL,
   course_grade varchar(50) DEFAULT NULL,
   PRIMARY KEY (course_id)
@@ -68,7 +68,7 @@ INSERT INTO course_info VALUES ('C003','计算机结构', '2017级');
 -- 分组信息表
 -- ----------------------------
 CREATE TABLE team_info (
-  team_id varchar(10) NOT NULL,
+  team_id varchar(20) NOT NULL,
   team_name varchar(50) not NULL,
   team_report_status varchar(10) default '未提交' check(team_report_status  in('提交','未提交')),
   PRIMARY KEY (Team_id)
@@ -88,7 +88,7 @@ INSERT INTO team_info VALUES ('Te004','数据库小队4','未提交');
 -- 学生信息表
 -- ----------------------------
 CREATE TABLE student_info(
-  stu_id varchar(5) NOT NULL,
+  stu_id varchar(20) NOT NULL,
   stu_name varchar(30) NOT NULL,
   stu_class_id varchar(30) DEFAULT null,
   stu_sex varchar(4) DEFAULT '男' check(stu_sex in('男','女')),
@@ -116,7 +116,7 @@ INSERT INTO student_info VALUES ('S0008', '徐鑫强', 'CS003', '男','14633346174',
 -- 教师信息表
 -- ----------------------------
 CREATE TABLE teacher_info (
-  tea_id varchar(5) NOT NULL,
+  tea_id varchar(20) NOT NULL,
   tea_name varchar(30) DEFAULT NULL,
   tea_sex varchar(4) DEFAULT '男' check(tea_sex in('男','女')),
   tea_academy varchar(100) DEFAULT NULL,
@@ -143,9 +143,9 @@ INSERT INTO teacher_info VALUES ('T0004', '徐小强', '男','楚才学院','副教授','14
 -- 课程设计选题表
 -- ----------------------------
 CREATE TABLE topic_info (
-  topic_id varchar(10) NOT NULL,
+  topic_id varchar(20) NOT NULL,
   topic_name varchar(50) NOT NULL,
-  topic_content varchar(600) DEFAULT NULL,
+  topic_content varchar(1000) DEFAULT NULL,
   topic_tea_id varchar(50) NOT NULL,
   topic_course_id varchar(50) NOT NULL,
   topic_limit_stu varchar(50) NOT NULL,
