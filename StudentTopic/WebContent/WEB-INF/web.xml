@@ -409,4 +409,14 @@
     <servlet-name>SearchClassServlet</servlet-name>
     <url-pattern>/SearchClassServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ClassSelect</display-name>
+    <servlet-name>ClassSelect</servlet-name>
+    <servlet-class>com.wax.servlet.ClassSelect</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ClassSelect</servlet-name>
+    <url-pattern>/ClassSelect</url-pattern>
+  </servlet-mapping>
 </web-app>

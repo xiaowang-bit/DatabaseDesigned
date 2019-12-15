@@ -49,9 +49,10 @@
 			</tbody>
 		</table>
 	</div>
+	</br>
 	<div class="addtea">
 		<a href="class_add.html">
-			<button>添加班级</button>
+			<button class="btn btn-primary">添加班级</button>
 		</a>
 	</div>	
 		<!-- 删除操作的模态框，对话框 -->

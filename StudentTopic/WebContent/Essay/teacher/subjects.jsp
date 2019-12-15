@@ -54,7 +54,7 @@
 		</div>
 			<div class="addstu" align="center">
 					<a href="#" onclick="addTopic('${sessionScope.login_tea.tea_id}')">
-						<button>添加题目</button>
+						<button type="submit" class="btn btn-success">添加题目</button>
 					</a>		
 			</div>
 			

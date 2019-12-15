@@ -65,7 +65,7 @@
 				<img src="../img/logo_.png" id="img1"/>
 			</div>
 			<div id="left">
-				<h2>ThesisSelect</h2>
+				<h2>TopicSelect</h2>
 			</div>
 			
 			<div id="right">
@@ -77,7 +77,7 @@
 			<div id="center">
 				<label class="label_"  style="margin: 0px;">Welcome Teacher:</label>
 			    <label class="label_" >【${sessionScope.login_tea.tea_name}】</label>
- 				<a href="/StudentTopic/TeacherInfoServlet?tea_id=${sessionScope.login_tea.tea_id}" target="center"  >修改个人信息</a>
+ 			    <label class="label_" ><a href="/StudentTopic/TeacherInfoServlet?tea_id=${sessionScope.login_tea.tea_id}" target="center"  >个人信息</a></label>
 			</div>
 		</div>
 	</body>

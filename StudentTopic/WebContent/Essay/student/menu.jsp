@@ -12,16 +12,17 @@
 				padding: 0px;
 			}
 			
-			#admin_menu
+			#stu_menu
 			{
 				height: 80px;
-				background-color: #FAFBFC;
+				background-color:  #696969;
 				padding-top: 30px;
 				
 			}
 			li{
 				font-size: 18px;
 				font-weight: bold;
+				background:#1E1E1E;
 			}
 			body{
 			}
@@ -33,12 +34,12 @@
 		</style>
 	</head>
 	<body>
-		<div id="admin_menu">
+		<div id="stu_menu">
 			<ul class="nav nav-tabs">
   				<li><a href="content_center.html"  target="center"  style="margin-left: 180px;">Home</a></li>
   				<li><a href="/StudentTopic/StudentSelectServlet?currentPage=1" target="center" >可选的题目</a></li>
  				<li><a href="/StudentTopic/TopicSelectedServlet?stu_id=${sessionScope.login_stu.stu_id}" target="center" >选题情况</a></li>
- 				<li><a href="upload_topic.jsp?stu_id=${sessionScope.login_stu.stu_id}" target="center" >上传文档报告</a></li>
+ 				<li><a href="upload_topic.jsp?stu_id=${sessionScope.login_stu.stu_id}" target="center" style="margin-right: 1040px;">上传文档报告</a></li>
 			</ul>
 		</div>
 

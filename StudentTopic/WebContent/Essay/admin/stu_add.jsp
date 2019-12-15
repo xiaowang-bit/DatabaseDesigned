@@ -9,7 +9,10 @@
 		<link rel="stylesheet" type="text/css" href="../css/style.css"/>
 		<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css"/>
 		<style type="text/css">
-
+			#class_id{
+				height:20px;
+				width:30px;			
+			}
 		</style>
 	</head>
 	<body>
@@ -20,13 +23,20 @@
 				<h2>Add Student</h2>
 				<br /><br /><br />
 	      		<form action="/StudentTopic/StudentAdd" method="post" >
-	      		选择添加学生所在的班级：
-				<select name="class_id" > 
-					<c:forEach var = "item" items="${sessionScope.classes }">
-							<OPTION value="${item.class_id }">${item.class_grade}${item.class_major}${item.class_name}</OPTION> 
-					</c:forEach>
-				</select>
-				<a href="class_add.html">添加班级</a>
+	      		
+	      		<div class="addstu">
+	      		<div class="inputleft"></div>
+					<div class="inputmiddle">
+						选择班级
+						<select name="class_id" > 
+							<c:forEach var = "item" items="${sessionScope.classes }">
+								<OPTION value="${item.class_id }">${item.class_grade}${item.class_major}${item.class_name}</OPTION> 
+							</c:forEach>
+						</select>
+					</div>
+					<div class="inputright"></div>
+				</div>
+	      						
 				<div class="addstu">
 					<div class="inputleft"></div>
 					<div class="inputmiddle">

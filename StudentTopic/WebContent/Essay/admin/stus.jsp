@@ -52,11 +52,11 @@
 			</table>
 		</div>
 		<div class="addstu" >
-				<a href="/StudentTopic/SearchClassServlet">
-					<button>添加单个学生</button>
+				<a href="stu_add.jsp">
+					<button class="btn btn-info">添加单个学生</button>
 				</a>
-				<a href="stus_add.html">
-   					<button>增加多个学生</button>
+				<a href="stus_add.jsp">
+   					<button class="btn btn-primary">增加多个学生</button>
 				</a>
 				<a href="/StudentTopic/StuSelectServlet?currentPage=1">首页</a>
 				<a href="/StudentTopic/StuSelectServlet?currentPage=${sessionScope.stus.currentPage==1?1:sessionScope.stus.currentPage-1}">上一页</a>

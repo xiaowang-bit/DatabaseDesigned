@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 
 import com.wax.JavaBeen.Student_info;
+import com.wax.dao.Class_InfoDao;
 import com.wax.service.AdminService;
 import com.wax.utils.BeanUtil;
 import com.wax.utils.Page;
@@ -39,6 +40,8 @@ public class StuSelectServlet extends HttpServlet {
 		int totalCount = dao.getStudetnCount();
 		Page page=new Page(list,totalCount,currentPage);
 		HttpSession session = request.getSession();
+		List<Map<String, Object>> cla = dao.searchAllClass();
+		session.setAttribute("classes", cla);
 		session.setAttribute("stus", page);
 		response.sendRedirect("/StudentTopic/Essay/admin/stus.jsp");
 	}

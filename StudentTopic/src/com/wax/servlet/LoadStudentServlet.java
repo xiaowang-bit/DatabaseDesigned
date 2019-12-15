@@ -16,6 +16,7 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import com.wax.JavaBeen.Student_info;
 import com.wax.dao.Student_infoDao;
 import com.wax.service.FileUtil;
 
@@ -31,7 +32,7 @@ public class LoadStudentServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=UTF-8");
-		
+		String class_id = request.getParameter("addclass_id");
 		boolean ismultipart = ServletFileUpload.isMultipartContent(request);
 		if(ismultipart)//判断上传表单中是否有mutipart属性
 		{
@@ -72,19 +73,19 @@ public class LoadStudentServlet extends HttpServlet {
 					File file=new File(realSavePath,saveFilename);
 					fileItem.write(file);
 					if("xlsx".equals(fileExtName) || "xls".equals(fileExtName)) {
+						int row = 0;
 						List<List<String>> readExcel = FileUtil.readExcel(filePath);
 						for(List<String > rowList :readExcel) {
 							Student_infoDao dao = new Student_infoDao();
-							int row = 0;
-							Object[] ob={rowList.get(0), rowList.get(1), rowList.get(2) , rowList.get(3)};
-							row = dao.insert(ob);
-							if(row>0)
-							{
-//								response.sendRedirect("success.jsp");
-							}
-							else{
-								response.sendRedirect("fail.jsp");
-							}
+							Student_info stu=new Student_info(rowList.get(0), rowList.get(1), class_id, rowList.get(2), rowList.get(3), rowList.get(4) , rowList.get(5));
+							row = dao.insert(stu);
+						}
+						if(row>0)
+						{
+							response.sendRedirect("success.jsp");
+						}
+						else{
+							response.sendRedirect("fail.jsp");
 						}
 					}
 					

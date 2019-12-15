@@ -20,7 +20,7 @@
 	<body>	
 		<form action="/StudentTopic/StudentUpdateServlet" method="post" class="form-horizontal">
 					<input type="hidden" name="stu_class_id" value="<%=session.getAttribute("stu_class_id")%>">
-   				    <h1>修改个人信息</h1>
+ 				    <br/><br/>
    				    <div class="form-group">
    					    <label class="control-label col-sm-4">学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号:</label>
    					    <div class="col-sm-6">

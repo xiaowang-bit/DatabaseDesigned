@@ -40,7 +40,7 @@
 							<OPTION value="1">选题未审核</OPTION> 
 							<OPTION value="2">选题不通过</OPTION>  
 						</select> 
-						<input type="button" id="btn" value="提交" onclick="setsubmit(this)" /> 
+						<input type="button"  class="btn btn-primary" id="btn" value="确定" onclick="setsubmit(this)" /> 
 						
 					</tr>
 					<tr></tr>

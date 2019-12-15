@@ -19,7 +19,7 @@
 	</head>
 	<body>	
 		<form action="/StudentTopic/TeacherUpdateServlet" method="post" class="form-horizontal">
-   				    <h1>修改个人信息</h1>
+   				    <h1>个人信息</h1>
    				    <div class="form-group">
    					    <label class="control-label col-sm-4">工&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号:</label>
    					    <div class="col-sm-6">
