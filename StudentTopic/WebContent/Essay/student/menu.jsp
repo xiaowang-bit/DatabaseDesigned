@@ -37,9 +37,9 @@
 		<div id="stu_menu">
 			<ul class="nav nav-tabs">
   				<li><a href="content_center.html"  target="center"  style="margin-left: 180px;">Home</a></li>
-  				<li><a href="/StudentTopic/StudentSelectServlet?currentPage=1" target="center" >可选的题目</a></li>
+  				<li><a href="/StudentTopic/StudentSelectServlet?currentPage=1" target="center" >可选题目</a></li>
  				<li><a href="/StudentTopic/TopicSelectedServlet?stu_id=${sessionScope.login_stu.stu_id}" target="center" >选题情况</a></li>
- 				<li><a href="upload_topic.jsp?stu_id=${sessionScope.login_stu.stu_id}" target="center" style="margin-right: 1040px;">上传文档报告</a></li>
+ 				<li><a href="upload_topic.jsp?stu_id=${sessionScope.login_stu.stu_id}" target="center" style="margin-right: 1060px;">上传文档报告</a></li>
 			</ul>
 		</div>
 

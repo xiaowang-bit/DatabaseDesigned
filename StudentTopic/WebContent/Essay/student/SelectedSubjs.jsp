@@ -13,7 +13,7 @@
 				font-size: 14px!important;
 			}
 			body{
-				background:url(../img/BG.jpg) repeat;
+				background:url(../img/BG4.jpg) repeat;
 			}
 
 			</style>
@@ -28,6 +28,7 @@
 						<th>题目编号</th>
 						<th>题目名字</th>
 						<th>老师名字</th>
+						<th>选题身份</th>
 						<th>审核状态</th>
 						<th>操作</th>
 					</tr>
@@ -39,6 +40,7 @@
 				    	<td>${item.st_topic_id }</td>
 				    	<td>${item.topic_name }</td>
 				    	<td>${item.tea_name }</td>
+				    	<td>${item.st_stu_check }</td>
 				    	<td>${item.st_checked}</td>
 				    	<td>
 			    			<a href="#" onclick="showDelete('${item.st_topic_id}')">退选 </a>

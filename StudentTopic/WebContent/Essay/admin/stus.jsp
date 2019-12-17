@@ -43,7 +43,7 @@
 					   	 	<td>${item.class_name }</td>
 					    	<td>
 					    	<a href="#" onclick="showInfo('${item.stu_id}','${item.stu_name}','${item.class_grade}','${item.stu_sex}','${item.class_major}','${item.class_name}','${item.class_academy}','${item.stu_phone}','${item.stu_email}','${item.stu_pwd}')">详情</a>
-					    	<a href="#" onclick="showUpdate('${item.stu_id}','${item.stu_name}','${item.class_name}','${item.class_major}','${item.stu_pwd}','${item.class_name}')">修改</a>
+					    	<a href="#" onclick="showUpdate('${item.stu_id}','${item.stu_name}','${item.class_grade}','${item.stu_sex}','${item.class_major}','${item.class_name}','${item.class_academy}','${item.stu_phone}','${item.stu_email}','${item.stu_pwd}','${item.class_id }')">修改</a>
 					    	<a href="#" onclick="showDelete('${item.stu_id}')">删除</a>
 					    </td>
 						</tr>
@@ -51,14 +51,15 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="addstu" >
+		<div class="addstu" style="padding-left: 520px;">
 				<a href="stu_add.jsp">
 					<button class="btn btn-info">添加单个学生</button>
 				</a>
+				&nbsp;&nbsp;
 				<a href="stus_add.jsp">
    					<button class="btn btn-primary">增加多个学生</button>
 				</a>
-				<a href="/StudentTopic/StuSelectServlet?currentPage=1">首页</a>
+				<a href="/StudentTopic/StuSelectServlet?currentPage=1" style="margin-left: 195px;">首页</a>
 				<a href="/StudentTopic/StuSelectServlet?currentPage=${sessionScope.stus.currentPage==1?1:sessionScope.stus.currentPage-1}">上一页</a>
 				<a href="/StudentTopic/StuSelectServlet?currentPage=${sessionScope.stus.currentPage>sessionScope.stus.totalPage?sessionScope.stus.currentPage%sessionScope.stus.totalPage+1:sessionScope.stus.totalPage}">下一页</a>
 				<a href="/StudentTopic/StuSelectServlet?currentPage=${sessionScope.stus.totalPage}">尾页</a>
@@ -84,6 +85,7 @@
 	    </div>
 	  </form>
 	  <form action="/StudentTopic/StudentUpdateServlet" method="post" class="form-horizontal">
+	  <input type="hidden" id="class_id" name="class_id"/>
 	        <div class="modal" id="modal_update">
 	    	    <div class="modal-dialog">
 	    		    <div class="modal-content">
@@ -123,14 +125,14 @@
 	    					    <label class="control-label col-sm-4">专&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;业:</label>
 	    					    <div class="col-sm-6">
 	    						    <input type="text" class="form-control"
-	    							    id="stu_major" name="stu_major" />
+	    							    id="stu_major" name="stu_major"/>
 	    					    </div>
 	    				    </div>
 	    				    <div class="form-group">
 	    					    <label class="control-label col-sm-4">班&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;级:</label>
 	    					    <div class="col-sm-6">
 	    						    <input type="text" class="form-control"
-	    							    id="stu_class" name="stu_class"/>
+	    							    id="stu_class" name="stu_class" readonly="readonly"/>
 	    					    </div>
 	    				    </div>
 	    				    <div class="form-group">
@@ -266,10 +268,15 @@
 			jQuery("#modal_delete").modal();
 			jQuery("#user_no").val(n);
 		}
-		function showUpdate(stu_id,stu_name,stu_class,stu_major,stu_pwd,stu_academy)
+		function showUpdate(stu_id,stu_name,stu_grade,stu_sex,stu_major,stu_class,stu_academy,stu_phone,stu_email,stu_pwd,class_id)
 		{
 			jQuery("#stu_id").val(stu_id);
+			jQuery("#class_id").val(class_id);
 			jQuery("#stu_name").val(stu_name);
+			jQuery("#stu_grade").val(stu_grade);
+			jQuery("#stu_sex").val(stu_sex);
+			jQuery("#stu_phone").val(stu_phone);
+			jQuery("#stu_email").val(stu_email);
 			jQuery("#stu_class").val(stu_class);
 			jQuery("#stu_major").val(stu_major);
 			jQuery("#stu_academy").val(stu_academy);

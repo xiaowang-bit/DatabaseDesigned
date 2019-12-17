@@ -41,6 +41,9 @@ public class LoadReportServlet extends HttpServlet {
 		List<Map<String, Object>> stu = studao.search(stu_id);
 		SelectTopicInfoDao stuselectdao=new SelectTopicInfoDao();
 		List<Map<String, Object>> search = stuselectdao.search(stu_id);
+		if(!search.get(0).get("st_stu_check").equals("组长")) {
+			response.sendRedirect("fail.jsp");
+		}
 		boolean ismultipart = ServletFileUpload.isMultipartContent(request);
 		if(ismultipart)//判断上传表单中是否有mutipart属性
 		{

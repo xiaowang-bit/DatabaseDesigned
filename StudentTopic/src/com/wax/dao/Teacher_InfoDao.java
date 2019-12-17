@@ -21,11 +21,12 @@ public class Teacher_InfoDao{
 	static {
 		con=DBCPUtilsService.getConnection();
 	}
-	public int insert(Object[] ob)
+	public int insert(Teacher_info tea)
 	{
 		int row = 0;
-		String sql = "insert into t_tea_info(tea_id, tea_name, tea_grade, tea_sex,tea_phone,tea_email,tea_pwd) values(?,?,?,?,?,?,?)";
+		String sql = "insert into teacher_info(tea_id, tea_name, tea_sex, tea_academy, tea_title, tea_phone, tea_email, tea_pwd) values(?,?,?,?,?,?,?,?)";
 		QueryRunner qr=new QueryRunner(DBCPUtilsService.getDataSource());
+		Object[]ob= {tea.getTea_id(), tea.getTea_name(), tea.getTea_sex(), tea.getTea_academy(), tea.getTea_title(), tea.getTea_phone(), tea.getTea_email(), tea.getTea_pwd()};
 		try {
 			row = qr.update(sql,ob);
 		} catch (SQLException e) {

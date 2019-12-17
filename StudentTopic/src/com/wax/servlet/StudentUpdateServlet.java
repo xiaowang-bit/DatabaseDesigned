@@ -5,6 +5,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 
 import com.wax.JavaBeen.Student_info;
 import com.wax.dao.Student_infoDao;
@@ -25,7 +26,7 @@ public class StudentUpdateServlet extends HttpServlet {
 		Student_info stu=new Student_info();
 		stu.setStu_id(request.getParameter("stu_id"));
 		stu.setStu_name(request.getParameter("stu_name"));
-		stu.setStu_class_id(request.getParameter("stu_class_id"));
+		stu.setStu_class_id(request.getParameter("class_id"));
 		stu.setStu_phone(request.getParameter("stu_phone"));
 		stu.setStu_pwd(request.getParameter("stu_pwd"));
 		stu.setStu_sex(request.getParameter("stu_sex"));
@@ -34,7 +35,11 @@ public class StudentUpdateServlet extends HttpServlet {
 		int row = dao.updateStudentInfo(stu);
 		if(row>0)
 		{
-			response.sendRedirect("success.jsp");
+			Object[] options = { "确定" }; 
+        	JOptionPane.showOptionDialog(null, "修改成功！", "提示", 
+        	JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, 
+        	null, options, options[0]); 
+        	response.sendRedirect("/StudentTopic/Essay/admin/stus.jsp");
 		}
 		else{
 			response.sendRedirect("fail.jsp");

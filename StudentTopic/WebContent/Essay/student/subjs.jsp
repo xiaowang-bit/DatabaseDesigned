@@ -13,7 +13,7 @@
 				font-size: 14px!important;
 			}
 			body{
-				background:url(../img/BG.jpg) repeat;
+				background:url(../img/BG4.jpg);
 			}
 
 			</style>
@@ -22,15 +22,17 @@
 
 	<body>
 		<div>
+		<br/>
 			老师编号查询：
 			<form action="/StudentTopic/StudentSelectByteaIdServlet" method="post">
 				<select name="select_tea_id" id="select_tea_id"> 
 		        	<c:forEach var="item" items="${sessionScope.subjs.objectList }">
-						<OPTION value="${item.topic_tea_id}" >${item.topic_tea_id}</OPTION> 
+						<OPTION value="${item.topic_tea_id}" >${item.tea_name}</OPTION> 
 	        		</c:forEach>
 				</select> 
 				<input type="submit" value="查询">
 				</form>
+				<br/>
 			<table class="table table-bordered table-hover">
 				<thead>
 					<tr>
@@ -60,7 +62,7 @@
 				</tbody>
 			</table>
 		</div>
-		<div>
+		<div align="center">
 			<a href="/StudentTopic/StudentSelectByteaIdServlet?currentPage=1">首页</a>
 			<a href="/StudentTopic/StudentSelectByteaIdServlet?currentPage=${sessionScope.subjs.currentPage==1?1:sessionScope.subjs.currentPage-1}">上一页</a>
 			<a href="/StudentTopic/StudentSelectByteaIdServlet?currentPage=${sessionScope.subjs.currentPage>sessionScope.subjs.totalPage?sessionScope.subjs.currentPage%sessionScope.subjs.totalPage+1:sessionScope.subjs.totalPage}">下一页</a>

@@ -14,7 +14,7 @@
 				margin: 0px;
 			}
 			body{
-				background:url(../img/BG.jpg) repeat;
+				background:url(../img/BG4.jpg) repeat;
 			}
 			#tea{
 				width: 800px;
@@ -78,8 +78,8 @@
 							
 						</div>
 						<div class="modal-footer">
-							<button type="submit" class="btn btn-sm btn-danger">确定</button>
-							<button type="reset" class="btn btn-sm btn-default" data-dismiss="modal">取消</button>
+							<button type="submit" class="btn btn-sm btn-info">确定</button>
+							<button type="reset" class="btn btn-sm btn-primary" data-dismiss="modal">取消</button>
 						</div>
 					</div>
 				</div>

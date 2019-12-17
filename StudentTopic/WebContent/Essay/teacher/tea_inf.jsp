@@ -18,8 +18,8 @@
 		</style>
 	</head>
 	<body>	
-		<form action="/StudentTopic/TeacherUpdateServlet" method="post" class="form-horizontal">
-   				    <h1>个人信息</h1>
+		<h1 align="center" style="font-size: 43px">个人信息</h1>
+		<form action="/StudentTopic/TeacherUpdateServlet" method="post" class="form-horizontal" >
    				    <div class="form-group">
    					    <label class="control-label col-sm-4">工&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号:</label>
    					    <div class="col-sm-6">
@@ -45,7 +45,7 @@
    					    <label class="control-label col-sm-4">学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;院:</label>
    					    <div class="col-sm-6">
    						    <input type="text" class="form-control"
-   							    id="stu_sex" name="tea_academy"  value="${sessionScope.teas.tea_academy}"/>
+   							    id="stu_sex" name="tea_academy"  value="${sessionScope.teas.tea_academy}" readonly="readonly"/>
    					    </div>
    				    </div>
    				    <div class="form-group">
@@ -76,9 +76,9 @@
    							    id="stu_phone" name="tea_pwd" value="${sessionScope.teas.tea_pwd}"/>
    					    </div>
    				    </div>
-   			    <div class="modal-footer">
-   				    <button type="submit" class="btn btn-sm btn-danger">修改</button>
-   				    <button type="reset" class="btn btn-sm btn-default"
+   			    <div class="modal1-footer" align="center">
+   				    <button type="submit" class="btn btn-sm btn-info">修改</button>&nbsp;&nbsp;&nbsp;
+   				    <button type="reset" class="btn btn-sm btn-primary"
    					    data-dismiss="modal">取消</button>
    			    </div> 
 	    </form>

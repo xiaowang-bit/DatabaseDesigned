@@ -7,6 +7,7 @@ import com.wax.JavaBeen.Class_Info;
 import com.wax.JavaBeen.Student_info;
 import com.wax.JavaBeen.Teacher_info;
 import com.wax.dao.Class_InfoDao;
+import com.wax.dao.SelectTopicInfoDao;
 import com.wax.dao.Student_infoDao;
 import com.wax.dao.Teacher_InfoDao;
 
@@ -19,6 +20,21 @@ public class AdminService {
 		Student_infoDao dao=new Student_infoDao();
 		return dao.getTotalCount();
 	}
+	public int getSelectTopicCount () {
+		SelectTopicInfoDao dao=new SelectTopicInfoDao();
+		return dao.getTotalCount();
+	}
+	public int addTeacher(Teacher_info tea) {
+		Teacher_InfoDao dao=new Teacher_InfoDao();
+		Teacher_info searchBytea_id = dao.searchBytea_id(tea.getTea_id());
+		if(searchBytea_id==null)
+			return dao.insert(tea);
+		return 0;
+	}
+	public int deleteStudent(String stu_id) {
+		Student_infoDao dao=new Student_infoDao();
+		return dao.delete(stu_id);
+	} 
 	public int getTeacherCount () {
 		Teacher_InfoDao dao=new Teacher_InfoDao();
 		return dao.getTotalCount();
@@ -44,5 +60,10 @@ public class AdminService {
 		if(search==null||search.size()<=0)
 			return dao.insert(stu);
 		return 0;
+	}
+	public List<Map<String, Object>> searchAllSelectTopic(String i,int currentPage) {
+		SelectTopicInfoDao dao=new SelectTopicInfoDao();
+		List<Map<String, Object>> list = dao.findAll(i, currentPage);
+		return list;
 	}
 }

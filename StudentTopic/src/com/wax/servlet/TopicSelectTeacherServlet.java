@@ -42,7 +42,6 @@ public class TopicSelectTeacherServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		Page page=new Page(topics,tatolCount,currentPage);
 		session.setAttribute("topics", page);
-		System.out.println(page.getObjectList());
 		response.sendRedirect("/StudentTopic/Essay/teacher/add_essay2.jsp");
 	}
 

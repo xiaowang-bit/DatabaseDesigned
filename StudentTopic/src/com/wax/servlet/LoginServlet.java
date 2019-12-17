@@ -1,6 +1,7 @@
 package com.wax.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.JOptionPane;
 
 import com.wax.dao.Admin_InfoDao;
 import com.wax.dao.Student_infoDao;
@@ -44,7 +46,11 @@ public class LoginServlet extends HttpServlet {
 						response.sendRedirect("/StudentTopic/Essay/admin/main.html");
 			        }
 		            else{
-		            	response.sendRedirect("fail.jsp");
+		            	Object[] options = { "确定" }; 
+		            	JOptionPane.showOptionDialog(null, "SORRY，登陆失败，请重新登录！", "警告", 
+		            	JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, 
+		            	null, options, options[0]); 
+		            	response.sendRedirect("/StudentTopic/Essay/admin/login_1.html");
 		            }
 		}
 		else if("教师".equals(type))
@@ -61,7 +67,11 @@ public class LoginServlet extends HttpServlet {
 				response.sendRedirect("/StudentTopic/Essay/teacher/main.html");
 			}
             else{
-            	response.sendRedirect("fail.jsp");
+            	Object[] options = { "确定" }; 
+           	    JOptionPane.showOptionDialog(null, "SORRY，登陆失败，请重新登录！", "警告", 
+           	    JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, 
+           	    null, options, options[0]); 
+            	response.sendRedirect("/StudentTopic/Essay/admin/login_1.html");
             }
 		}
 		else if("学生".equals(type))
@@ -79,7 +89,11 @@ public class LoginServlet extends HttpServlet {
 				response.sendRedirect("/StudentTopic/Essay/student/main.html");
 			}
             else{
-            	response.sendRedirect("fail.jsp");
+            	 Object[] options = { "确定" }; 
+            	 JOptionPane.showOptionDialog(null, "SORRY，登陆失败，请重新登录！", "警告", 
+            	 JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, 
+            	 null, options, options[0]); 
+            	 response.sendRedirect("/StudentTopic/Essay/admin/login_1.html");
             }
 		}
 	}

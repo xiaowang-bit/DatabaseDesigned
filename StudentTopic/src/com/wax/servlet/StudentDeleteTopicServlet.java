@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.JOptionPane;
 
 import com.wax.JavaBeen.SelectTopic_info;
 import com.wax.dao.SelectTopicInfoDao;
@@ -30,7 +31,7 @@ public class StudentDeleteTopicServlet extends HttpServlet {
 		int row = dao.deleteTopic(st_stu_id);
 		if(row>0)
 		{
-			response.sendRedirect("success.jsp");
+        	response.sendRedirect("success.jsp");
 		}
 		else{
 			response.sendRedirect("fail.jsp");

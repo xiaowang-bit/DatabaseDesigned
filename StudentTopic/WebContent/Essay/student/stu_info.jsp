@@ -18,9 +18,9 @@
 		</style>
 	</head>
 	<body>	
+		<h1 align="center" class="form-control" style="font-size: 43px">个人信息</h1>
 		<form action="/StudentTopic/StudentUpdateServlet" method="post" class="form-horizontal">
 					<input type="hidden" name="stu_class_id" value="<%=session.getAttribute("stu_class_id")%>">
- 				    <br/><br/>
    				    <div class="form-group">
    					    <label class="control-label col-sm-4">学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号:</label>
    					    <div class="col-sm-6">
@@ -91,9 +91,9 @@
    							    id="stu_pwd" name="stu_pwd" value="<%=session.getAttribute("stu_pwd")%>"/>
    					    </div>
    				    </div>
-   			    <div class="modal-footer">
-   				    <button type="submit" class="btn btn-sm btn-danger">修改</button>
-   				    <button type="reset" class="btn btn-sm btn-default"
+   			    <div class="modal1-footer" align="center">
+   				    <button type="submit" class="btn btn-sm btn-info">修改</button>&nbsp;&nbsp;&nbsp;
+   				    <button type="reset" class="btn btn-sm btn-primary"
    					    data-dismiss="modal">取消</button>
    			    </div> 
 	    </form>

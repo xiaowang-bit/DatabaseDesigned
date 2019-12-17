@@ -14,7 +14,7 @@
 				margin: 0px;
 			}
 			body{
-				background:url(../img/BG.jpg) repeat;
+				background:url(../img/BG4.jpg) repeat;
 			}
 			#tea{
 				width: 800px;

@@ -13,12 +13,17 @@ import com.wax.service.DBCPUtilsService;
 import com.wax.utils.JdbcUtils;
 
 public class SelectTopicInfoDao {
-	public List<Map<String, Object>> findAll(String i){
+	public List<Map<String, Object>> findAll(String i,int currentPage){
 		List<Map<String, Object>> list=null;
-		String sql="select * from select_topic_info,topic_info,teacher_info,student_info where st_topic_id=topic_id and st_tea_id=tea_id and st_stu_id=stu_id and st_checked=?";
+		String sql="select*from("
+				+ "select  rownum r,t1.*,t2.*,t3.*,t4.* from select_topic_info t1,topic_info t2,teacher_info t3,student_info t4 "
+				+ "where st_topic_id=topic_id and st_tea_id=tea_id and st_stu_id=stu_id and st_checked=? and rownum<=?"
+				+ ")"
+				+ "where r>=?";
 		QueryRunner qr=new QueryRunner(JdbcUtils.getDataSource());
+		Object[]ob= {i,currentPage*8,(currentPage-1)*8+1};
 		try {
-			list = qr.query(sql,new MapListHandler(),i);
+			list = qr.query(sql,new MapListHandler(),ob);
 			System.out.println(list);
 		} catch (SQLException e) {
 			e.printStackTrace();

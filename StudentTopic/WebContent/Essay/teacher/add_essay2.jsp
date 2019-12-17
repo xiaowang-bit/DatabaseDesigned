@@ -13,7 +13,7 @@
 		    	font-size: 14px!important;
 		    }
 			body{
-				background:url(../img/BG.jpg) repeat;
+				background:url(../img/BG4.jpg) repeat;
 			}
 		</style>
 	</head>
@@ -52,6 +52,12 @@
 					</c:forEach>
 				</tbody>
 			</table>
+			<div align="center">
+					<a href="/StudentTopic/TopicSelectTeacherServlet?currentPage=1&tea_id=${sessionScope.login_tea.tea_id}">首页</a>
+					<a href="/StudentTopic/TopicSelectTeacherServlet?currentPage=${sessionScope.topics.currentPage==1?1:sessionScope.topics.currentPage-1}&tea_id=${sessionScope.login_tea.tea_id}">上一页</a>
+					<a href="/StudentTopic/TopicSelectTeacherServlet?currentPage=${sessionScope.topics.currentPage>sessionScope.topics.totalPage?sessionScope.topics.currentPage%sessionScope.topics.totalPage+1:sessionScope.topics.totalPage}&tea_id=${sessionScope.login_tea.tea_id}">下一页</a>
+					<a href="/StudentTopic/TopicSelectTeacherServlet?currentPage=${sessionScope.topics.totalPage}&tea_id=${sessionScope.login_tea.tea_id}">尾页</a>
+			</div>
 		</div>
 			
 	<form action="/StudentTopic/TopicSelectUpdateServlet" method="post" class="form-horizontal">
@@ -102,12 +108,6 @@
 		    </div>
 	    </div>
 	  </form>
-	<div>
-			<a href="/StudentTopic/TopicSelectTeacherServlet?currentPage=1&tea_id=${sessionScope.login_tea.tea_id}">首页</a>
-			<a href="/StudentTopic/TopicSelectTeacherServlet?currentPage=${sessionScope.topics.currentPage==1?1:sessionScope.topics.currentPage-1}&tea_id=${sessionScope.login_tea.tea_id}">上一页</a>
-			<a href="/StudentTopic/TopicSelectTeacherServlet?currentPage=${sessionScope.topics.currentPage>sessionScope.topics.totalPage?sessionScope.topics.currentPage%sessionScope.topics.totalPage+1:sessionScope.topics.totalPage}&tea_id=${sessionScope.login_tea.tea_id}">下一页</a>
-			<a href="/StudentTopic/TopicSelectTeacherServlet?currentPage=${sessionScope.topics.totalPage}&tea_id=${sessionScope.login_tea.tea_id}">尾页</a>
-	</div>
 	</body>
 	<script type="text/javascript" src="../js/jquery-3.2.1.min.js" charset="UTF-8"></script>
 	<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js" charset="UTF-8"></script>

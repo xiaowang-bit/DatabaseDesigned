@@ -13,6 +13,8 @@ import javax.servlet.http.HttpSession;
 import com.wax.JavaBeen.SelectTopic_info;
 import com.wax.dao.SelectTopicInfoDao;
 import com.wax.dao.Topic_InfoDao;
+import com.wax.service.AdminService;
+import com.wax.utils.Page;
 
 public class SubjectSelectServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -26,13 +28,18 @@ public class SubjectSelectServlet extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
-		SelectTopicInfoDao dao=new SelectTopicInfoDao();
-		List<Map<String, Object>> list = dao.findAll("通过");
-		
+		String cpage = request.getParameter("currentPage");
+		if(cpage==null) {
+			cpage="1";
+		}
+		int currentPage=Integer.parseInt(cpage);
+		AdminService dao = new AdminService();
+		List<Map<String, Object>> list = dao.searchAllSelectTopic("通过", currentPage);
+		int totalCount = dao.getSelectTopicCount();
+		Page page=new Page(list,totalCount,currentPage);
 		HttpSession session = request.getSession();
-		session.setAttribute("subjs", list);
+		session.setAttribute("subjs", page);
 		response.sendRedirect("/StudentTopic/Essay/admin/subjs.jsp");
-
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

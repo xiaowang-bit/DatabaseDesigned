@@ -15,16 +15,17 @@
 		</style>
 </head>
 <body>
+
 	<div id="wrapper">
 	<div id="wrappertop"></div>
 	<div id="wrappermiddle">
-	<h2>上传格式为word，重复上传会覆盖哦！</h2>
+	<h2>&nbsp;&nbsp;重复上传文档会覆盖哦！</h2>
 	<br /><br />
 	<form action="/StudentTopic/LoadReportServlet?stu_id=<%=request.getParameter("stu_id") %>" method="post" enctype="multipart/form-data">
 		<div class="text-center" style="margin-top:30px ;">
 		<div style="margin-left:60px ;"><input type="file" name="File" ><br/><br/></div>
-			<input type="submit"  class="btn btn-success" value="上传">&nbsp;&nbsp;&nbsp;&nbsp;
-			<button type="reset" class="btn btn-danger">重置</button>
+			<input type="submit"  class="btn btn-info" value="上传">&nbsp;&nbsp;&nbsp;&nbsp;
+			<button type="reset" class="btn btn-primary">重置</button>
 			<br /><br />
 		</div>
 	</form>

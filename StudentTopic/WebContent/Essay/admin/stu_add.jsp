@@ -20,10 +20,12 @@
 		<div id="wrapper">
 			<div id="wrappertop"></div>
 			<div id="wrappermiddle">
-				<h2>Add Student</h2>
+				<tr>
+				<h2>添加学生</h2>
+				<button class="btn btn-default"style="margin-left:250px"><a href="class_add.html">添加班级</a></button>
+				<tr>
 				<br /><br /><br />
-	      		<form action="/StudentTopic/StudentAdd" method="post" >
-	      		
+	      		<form action="/StudentTopic/StudentAdd" method="post" >	
 	      		<div class="addstu">
 	      		<div class="inputleft"></div>
 					<div class="inputmiddle">
@@ -97,8 +99,8 @@
 				</div>
 				
 				<div class="text-center" style="margin-top:10px ;">
-		        	<button type="submit" class="btn btn-success">添加</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<button type="reset" class="btn btn-danger">重置</button>
+		        	<button type="submit" class="btn btn-info">添加</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<button type="reset" class="btn btn-primary">重置</button>
 	            <br /><br />
 				</div>	
 				       

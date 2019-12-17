@@ -10,7 +10,7 @@
 
 </body>
 <script type="text/javascript">
-		alert(" 恭喜你操作失败！");
+		alert(" 操作失败！");
 </script>
 <script type="text/javascript" src="../js/jquery-3.2.1.min.js" ></script>
 	<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js" ></script>

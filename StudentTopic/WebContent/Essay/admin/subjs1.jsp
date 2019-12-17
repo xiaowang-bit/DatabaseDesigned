@@ -34,14 +34,19 @@
 		<div>
 			<table class="table table-bordered table-hover">
 				<thred>
+				<br/>
 					<tr>
-						<select name="mylink" id="mylink"> 
+						<form name="form1" method="post" style="margin-left:10px"> 
+							<select class="downtable" name="mylink" id="mylink"style="heigth:100px""> 
+							<OPTION></OPTION> 
 							<OPTION value="0">选题通过</OPTION> 
 							<OPTION value="1">选题未审核</OPTION> 
 							<OPTION value="2">选题不通过</OPTION>  
 						</select> 
-							<input type="button"  class="btn btn-primary"id="btn" value="确定" onclick="setsubmit(this)" /> 
+						</form>
+							<input type="button"  class="btn btn-primary"id="btn"  style="margin-left: 50px;" value="确定" onclick="setsubmit(this)" /> 
 					</tr>
+					<br/><br/><br/>
 					<tr>
 						<th>题目编号</th>
 						<th>题目名字</th>
@@ -52,7 +57,7 @@
 					</tr>
 				</thred>
 		        <tbody>
-		        	<c:forEach var="item" items="${sessionScope.subjs1 }">
+		        	<c:forEach var="item" items="${sessionScope.subjs1.objectList }">
 			        	<tr>
 				    	<td>${item.st_topic_id }</td>
 				    	<td>${item.topic_name }</td>
@@ -65,6 +70,10 @@
 				</tbody>
 			</table>
 		</div>
+		<a href="/StudentTopic/Subject1SelectServlet?currentPage=1" style="margin-left: 195px;">首页</a>
+			<a href="/StudentTopic/Subject1SelectServlet?currentPage=${sessionScope.subjs1.currentPage==1?1:sessionScope.subjs1.currentPage-1}">上一页</a>
+			<a href="/StudentTopic/Subject1SelectServlet?currentPage=${sessionScope.subjs1.currentPage>sessionScope.subjs1.totalPage?sessionScope.subjs1.currentPage%sessionScope.subjs1.totalPage+1:sessionScope.subjs1.totalPage}">下一页</a>
+			<a href="/StudentTopic/Subject1SelectServlet?currentPage=${sessionScope.subjs1.totalPage}">尾页</a>
 	</body>
 	<script src="../js/jquery-3.2.1.min.js"type="text/javascript"charset="UTF-8"></script>
 	<script src="../bootstrap/js/bootstrap.min.js"type="text/javascript"charset="UTF-8"></script>

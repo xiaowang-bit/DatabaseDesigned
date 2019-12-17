@@ -32,7 +32,6 @@ public class LoadStudentServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=UTF-8");
-		String class_id = request.getParameter("addclass_id");
 		boolean ismultipart = ServletFileUpload.isMultipartContent(request);
 		if(ismultipart)//判断上传表单中是否有mutipart属性
 		{
@@ -47,48 +46,69 @@ public class LoadStudentServlet extends HttpServlet {
 				List<FileItem> itme = fileUpload.parseRequest(request);
 				//遍历item中的数据（name,pwd,file）
 				Iterator<FileItem> it=itme.iterator();
+				String class_id=null;
 				while(it.hasNext()) {
 					FileItem fileItem = it.next();
-					//获取文件名
-					String filename=fileItem.getName();
-					if(filename==null || filename.trim().equals("")){
-                        continue;
-                    }
-					
-					//处理获取到的上传文件的文件名的路径部分只保留文件名部分
-                    filename = filename.substring(filename.lastIndexOf("\\")+1);
-                    //得到上传文件的扩展名
-                    String fileExtName = filename.substring(filename.lastIndexOf(".")+1);
-                    //如果需要限制上传的文件类型，那么可以通过文件的扩展名来判断上传的文件类型是否合法
-
-					String savePath=this.getServletContext().getRealPath("/WEB-INF/upload");
-					
-					//得到文件保存的名称
-                    String saveFilename = makeFileName(filename);
-                    //得到文件的保存目录
-                    String realSavePath = makePath(saveFilename, savePath);
-                    //文件全路径
-                    String filePath = realSavePath + "\\" + saveFilename;
-					
-					File file=new File(realSavePath,saveFilename);
-					fileItem.write(file);
-					if("xlsx".equals(fileExtName) || "xls".equals(fileExtName)) {
-						int row = 0;
-						List<List<String>> readExcel = FileUtil.readExcel(filePath);
-						for(List<String > rowList :readExcel) {
-							Student_infoDao dao = new Student_infoDao();
-							Student_info stu=new Student_info(rowList.get(0), rowList.get(1), class_id, rowList.get(2), rowList.get(3), rowList.get(4) , rowList.get(5));
-							row = dao.insert(stu);
-						}
-						if(row>0)
-						{
-							response.sendRedirect("success.jsp");
-						}
-						else{
-							response.sendRedirect("fail.jsp");
+					String fieldName= fileItem.getFieldName();
+					if(fileItem.isFormField()) {
+						if("addclass_id".equals(fieldName)) {
+							class_id= fileItem.getString("utf-8");
 						}
 					}
-					
+				}
+				Iterator<FileItem> it2=itme.iterator();
+				while(it2.hasNext()) {
+					FileItem fileItem = it2.next();
+					String fieldName= fileItem.getFieldName();
+					if(fileItem.isFormField()) {
+						if("addclass_id".equals(fieldName)) {
+							class_id= fileItem.getString("utf-8");
+						}
+					}else {
+						String filename=fileItem.getName();
+						if(filename==null || filename.trim().equals("")){
+							continue;
+						}
+						
+						//处理获取到的上传文件的文件名的路径部分只保留文件名部分
+						filename = filename.substring(filename.lastIndexOf("\\")+1);
+						//得到上传文件的扩展名
+						String fileExtName = filename.substring(filename.lastIndexOf(".")+1);
+						//如果需要限制上传的文件类型，那么可以通过文件的扩展名来判断上传的文件类型是否合法
+						
+						String savePath=this.getServletContext().getRealPath("/WEB-INF/upload");
+						
+						//得到文件保存的名称
+						String saveFilename = makeFileName(filename);
+						//得到文件的保存目录
+						String realSavePath = makePath(saveFilename, savePath);
+						//文件全路径
+						String filePath = realSavePath + "\\" + saveFilename;
+						
+						File file=new File(realSavePath,saveFilename);
+						fileItem.write(file);
+						if("xlsx".equals(fileExtName) || "xls".equals(fileExtName)) {
+							int row = 0;
+							List<List<String>> readExcel = FileUtil.readExcel(filePath);
+							int k=0;
+							for(List<String > rowList :readExcel) {
+								k+=1;
+								if(k==1) {
+									continue;
+								}
+								Student_infoDao dao = new Student_infoDao();
+								Student_info stu=new Student_info(rowList.get(0), rowList.get(1), class_id, rowList.get(2), rowList.get(3), rowList.get(4) , rowList.get(5));
+								row = dao.insert(stu);
+								if(row>0)
+								{	continue;
+								}
+								else{
+									response.sendRedirect("fail.jsp");
+								}
+							}
+							response.sendRedirect("success.jsp");
+						}
+					}
 				}
 			} catch (FileUploadException e) {
 				e.printStackTrace();

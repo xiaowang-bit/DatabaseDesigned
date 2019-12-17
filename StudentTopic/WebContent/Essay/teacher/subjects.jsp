@@ -13,7 +13,7 @@
 		    	font-size: 14px!important;
 		    }
 			body{
-				background:url(../img/BG.jpg) repeat;
+				background:url(../img/BG4.jpg) repeat;
 			}
 		</style>
 	</head>
@@ -28,7 +28,6 @@
 						<th>题号</th>
 						<th>题名</th>
 						<th>限制人数</th>
-						<th>内容</th>
 						<th>操作</th>
 					</tr>
 				</thead>
@@ -41,7 +40,6 @@
 							<td>${item.topic_id}</td>
 					   	 	<td>${item.topic_name }</td>
 					   	 	<td>${item.topic_limit_stu }</td>
-					   	 	<td>${item.topic_content }</td>
 					    	<td>
 					    		<a href="#" onclick="Showinfo('${item.TOPIC_TEA_ID}','${item.TOPIC_COURSE_ID}','${item.topic_id}','${item.tea_name}','${item.course_name}','${item.topic_name}','${item.topic_content}','${item.topic_course_id }','${item.topic_limit_stu}','${item.topic_semater }')">详情</a>
 					    		<a href="#" onclick="Update('${item.TOPIC_TEA_ID}','${item.TOPIC_COURSE_ID}','${item.topic_id}','${item.tea_name}','${item.course_name}','${item.topic_name}','${item.topic_content}','${item.topic_course_id }','${item.topic_limit_stu}','${item.topic_semater }')">修改</a>
@@ -54,7 +52,7 @@
 		</div>
 			<div class="addstu" align="center">
 					<a href="#" onclick="addTopic('${sessionScope.login_tea.tea_id}')">
-						<button type="submit" class="btn btn-success">添加题目</button>
+						<button type="submit" class="btn btn-primary">添加题目</button>
 					</a>		
 			</div>
 			
@@ -164,68 +162,19 @@
         </div>
 	  </form>
 	  <form class="form-horizontal">
-	   	<div class="modal"id="model_showinfo">
-        	<div class="modal-dialog">
-        		<div class="modal-content">
+	  <div class="modal"id="model_showinfo">
+      	 <div class="modal-dialog">
+        	  <div class="modal-content">
         			<div class="modal-header">
         				<h1>详情</h1>
         			</div>
         			<div class="modal-body">
-        				<div class="form-group ">
-        					<label class="control-label col-sm-2">学期</label>
-        					<div class="col-sm-6">
-        						<input type="text"class="form-control"
-        							id="topic_semater" name="topic_semater"readonly="readonly"/>
-        					</div>
-        				</div>
-        				<div class="form-group ">
-        					<label class="control-label col-sm-2">题号</label>
-        					<div class="col-sm-6">
-        						<input type="text"class="form-control"
-        							id="topic_id" name="topic_id" readonly="readonly" />
-        				</div>
-        				</div>
+        				
         				<div class="form-group ">
         					<label class="control-label col-sm-2">题名</label>
         					<div class="col-sm-6">
         						<input type="text"class="form-control"
         							id="topic_name" name="topic_name"readonly="readonly"/>
-        					</div>
-        				</div>
-        				
-        				<div class="form-group ">
-        					<label class="control-label col-sm-2">课程号</label>
-        					<div class="col-sm-6">
-        						<input type="text"class="form-control"
-        							id="course_id" name="course_id" readonly="readonly"/>
-        					</div>
-        				</div>
-        				<div class="form-group ">
-        					<label class="control-label col-sm-2">课程名</label>
-        					<div class="col-sm-6">
-        						<input type="text"class="form-control"
-        							id="course_name" name="course_name" readonly="readonly"/>
-        					</div>
-        				</div>
-        				<div class="form-group ">
-        					<label class="control-label col-sm-2">老师号</label>
-        					<div class="col-sm-6">
-        						<input type="text"class="form-control"
-        							id="tea_id" name="tea_id" readonly="readonly"/>
-        					</div>
-        				</div>
-        				<div class="form-group ">
-        					<label class="control-label col-sm-2">老师名</label>
-        					<div class="col-sm-6">
-        						<input type="text"class="form-control"
-        							id="tea_name" name="tea_name" readonly="readonly"/>
-        					</div>
-        				</div>
-        				<div class="form-group ">
-        					<label class="control-label col-sm-2">题目内容</label>
-        					<div class="col-sm-6">
-        						<input type="text"class="form-control"
-        							id="topic_content" name="topic_content"readonly="readonly"/>
         					</div>
         				</div>
         				<div class="form-group ">
@@ -236,6 +185,14 @@
         					</div>
         				</div>
         				
+        				<div class="form-group ">
+        					<label class="control-label col-sm-2">题目内容</label>
+        					<div class="col-sm-6">
+        						<textarea  style="overflow-x:scroll "class="form-control"
+        							id="topic_content" name="topic_content"readonly="readonly">
+        						</textarea>
+        					</div>
+        				</div>
         			</div>
         		</div>
         	</div>
@@ -406,6 +363,9 @@
 			jQuery("#tea_id2").val(tea_id);
 			jQuery("#course_id2").val(course_id);
 			jQuery("#topic_id2").val(topic_id);
+		}
+		function news() {
+			document.getElementById("p_content").style.display="block";
 		}
 	</script>
 </html>

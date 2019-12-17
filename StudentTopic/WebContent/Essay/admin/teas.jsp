@@ -52,11 +52,11 @@
 			</tbody>
 		</table>
 	</div>
-	<div class="addtea">
+	<div class="addtea" style="padding-left: 600px;">
 		<a href="Add_tea.html">
-			<button>添加老师</button>
+		<button class="btn btn-primary">添加老师</button>
 		</a>
-		<a href="/StudentTopic/TeaSelectServlet?currentPage=1">首页</a>
+		<a href="/StudentTopic/TeaSelectServlet?currentPage=1" style="margin-left: 230px;">首页</a>
 		<a href="/StudentTopic/TeaSelectServlet?currentPage=${sessionScope.teas.currentPage==1?1:sessionScope.teas.currentPage-1}">上一页</a>
 		<a href="/StudentTopic/TeaSelectServlet?currentPage=${sessionScope.teas.currentPage>sessionScope.teas.totalPage?sessionScope.teas.currentPage%sessionScope.teas.totalPage+1:sessionScope.teas.totalPage}">下一页</a>
 		<a href="/StudentTopic/TeaSelectServlet?currentPage=${sessionScope.teas.totalPage}">尾页</a>
@@ -71,7 +71,7 @@
 							<h1>提示</h1>
 						</div>
 						<div class="modal-body">
-							您确定要删除[<span id="tea_id"></span>]吗?
+							您确定要删除[<span id="tea_id0"></span>]吗?
 						</div>
 						<div class="modal-footer">
 							<button type="submit" class="btn btn-sm btn-danger">确定</button>
@@ -94,7 +94,7 @@
         					<label class="control-label col-sm-2">工号</label>
         					<div class="col-sm-6">
         						<input type="text"class="form-control"
-        							id="tea_id" name="tea_id" readonly="readonly" />
+        							id="tea_id" name="tea_id" readonly="readonly"/>
         				</div>
         				</div>
         				<div class="form-group ">
@@ -128,7 +128,7 @@
         				<div class="form-group ">
         					<label class="control-label col-sm-2">电话</label>
         					<div class="col-sm-6">
-        						<input type="password"class="form-control"
+        						<input type="text"class="form-control"
         							id="tea_phone" name="tea_phone"/>
         					</div>
         				</div>
@@ -142,7 +142,7 @@
         				<div class="form-group ">
         					<label class="control-label col-sm-2">密码</label>
         					<div class="col-sm-6">
-        						<input type="password"class="form-control"
+        						<input type="text"class="form-control"
         							id="tea_pwd" name="tea_pwd"/>
         					</div>
         				</div>
@@ -161,7 +161,7 @@
         	<div class="modal-dialog">
         		<div class="modal-content">
         			<div class="modal-header">
-        				<h1>编辑</h1>
+        				<h1>详情</h1>
         			</div>
         			<div class="modal-body">
         				<div class="form-group ">
@@ -202,7 +202,7 @@
         				<div class="form-group ">
         					<label class="control-label col-sm-2">电话</label>
         					<div class="col-sm-6">
-        						<input type="password"class="form-control"
+        						<input type="text"class="form-control"
         							id="tea_phone1" name="tea_phone"readonly="readonly"/>
         					</div>
         				</div>
@@ -216,7 +216,7 @@
         				<div class="form-group ">
         					<label class="control-label col-sm-2">密码</label>
         					<div class="col-sm-6">
-        						<input type="password"class="form-control"
+        						<input type="text"class="form-control"
         							id="tea_pwd1" name="tea_pwd"readonly="readonly"/>
         					</div>
         				</div>
@@ -233,7 +233,7 @@
 	<script type="text/javascript">
 		function showDelete(tea_id)
 		{
-			jQuery("#tea_id").html(tea_id);
+			jQuery("#tea_id0").html(tea_id);
 			jQuery("#modal_delete").modal();
 			jQuery("#user_no").val(tea_id);
 		}
