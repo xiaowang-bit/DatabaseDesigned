@@ -5,6 +5,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 
 import com.wax.JavaBeen.Class_Info;
 import com.wax.dao.Class_InfoDao;
@@ -27,9 +28,12 @@ public class ClassAddServlet extends HttpServlet {
 		Class_Info cla=new Class_Info(class_id,class_grade, class_name, class_major, class_academy);
 		AdminService as=new AdminService();
 		int row=as.addClass(cla);
-		if(row>0)
-		{
-			response.sendRedirect("success.jsp");
+		if(row>0){
+			Object[] options = { "确定" }; 
+        	JOptionPane.showOptionDialog(null, "添加成功！", "提示", 
+        	JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, 
+        	null, options, options[0]); 
+			response.sendRedirect("/StudentTopic/Essay/admin/stus.jsp");
 		}else{
 			response.sendRedirect("fail.jsp");
 		}

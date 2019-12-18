@@ -19,7 +19,10 @@
 	<div id="wrapper">
 	<div id="wrappertop"></div>
 	<div id="wrappermiddle">
+	<tr>
 				<h2>&nbsp;&nbsp;添加多个学生</h2>
+				<a href="class_add.html"><button class="btn btn-primary"style="margin-left:250px">添加班级</button></a>
+	</tr>
 				<br /><br />
 	<form action="/StudentTopic/LoadStudentServlet" method="post" enctype="multipart/form-data">
 		<div class="text-center" style="margin-top:30px ;">
@@ -33,7 +36,7 @@
 		<br/></div>
 		<div style="margin-left:110px ;"><input type="file" name="File" ><br/></div>
 			<div align="center">
-				<input type="submit"  class="btn btn-info" value="上传">
+				<input type="submit"  class="btn btn-info" value="导入">
 				<button type="reset" class="btn btn-primary">重置</button>
 			</div>
 			

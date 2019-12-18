@@ -51,8 +51,8 @@
         				
         			</div>
        				<div class="modal-footer">
-       					<button type="submit"class="btn btn-sm btn-danger">添加</button>
-       					<button type="reset"class="btn btn-sm btn-default"
+       					<button type="submit"class="btn btn-sm btn-info">添加</button>
+       					<button type="reset"class="btn btn-sm btn-primary"
        						data-dismiss = "modal">取消</button>
        				</div>
         		</div>

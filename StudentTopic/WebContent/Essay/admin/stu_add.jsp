@@ -22,7 +22,7 @@
 			<div id="wrappermiddle">
 				<tr>
 				<h2>添加学生</h2>
-				<button class="btn btn-default"style="margin-left:250px"><a href="class_add.html">添加班级</a></button>
+				<a href="class_add.html"><button class="btn btn-primary"style="margin-left:250px">添加班级</button></a>
 				<tr>
 				<br /><br /><br />
 	      		<form action="/StudentTopic/StudentAdd" method="post" >	

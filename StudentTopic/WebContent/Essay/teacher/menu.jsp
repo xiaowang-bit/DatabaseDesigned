@@ -37,8 +37,8 @@
 		<div id="teacher_menu">
 			<ul class="nav nav-tabs">
   				<li><a href="content_center.html"  target="center" style="margin-left: 180px;">Home</a></li>
-  				<li><a href="/StudentTopic/TopicSelectTeacherServlet?tea_id=${sessionScope.login_tea.tea_id}"  target="center">选题学生管理</a></li>
- 				<li><a href="/StudentTopic/TopicToTeacherServlet?tea_id=${sessionScope.login_tea.tea_id}" target="center"  >题目管理</a></li>
+  				<li><a href="/StudentTopic/TopicSelectTeacherServlet?tea_id=${sessionScope.login_tea.tea_id}"  target="center">学生选题管理</a></li>
+ 				<li><a href="/StudentTopic/TopicToTeacherServlet?tea_id=${sessionScope.login_tea.tea_id}" target="center"  >课题管理</a></li>
  				<li><a href="/StudentTopic/ListClassServlet?tea_id=${sessionScope.login_tea.tea_id}" target="center" style="margin-right: 1060px;" >下载报告</a></li>
 			</ul>
 		</div>

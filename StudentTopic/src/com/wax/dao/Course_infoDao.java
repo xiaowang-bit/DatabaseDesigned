@@ -14,7 +14,7 @@ public class Course_infoDao {
 	public List<Map<String, Object>> findAll(){
 		List<Map<String, Object>> list=null;
 		String sql="select * from course_info";
-		QueryRunner qr=new QueryRunner(DBCPUtilsService.getDataSource());
+		QueryRunner qr=new QueryRunner(JdbcUtils.getDataSource());
 		try {
 			list = qr.query(sql,new MapListHandler());
 		} catch (SQLException e) {
@@ -25,7 +25,7 @@ public class Course_infoDao {
 	public int insert( String course_id  ,String course_name  ,String course_grade) {
 		int row=0;
 		String sql="insert into course_info values( ?,?,? )";
-		QueryRunner qr=new QueryRunner(DBCPUtilsService.getDataSource());
+		QueryRunner qr=new QueryRunner(JdbcUtils.getDataSource());
 		Object[] obs= { course_id  ,course_name  ,course_grade};
 		try {
 			row = qr.update(sql,obs);

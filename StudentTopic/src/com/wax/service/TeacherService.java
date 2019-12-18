@@ -28,7 +28,7 @@ public class TeacherService {
 	public int addTopic(Topic_info topic) {
 		Topic_InfoDao dao=new Topic_InfoDao();
 		List<Topic_info> search = dao.search(topic.getTopic_id());
-		if(search==null&&search.size()<1) {
+		if(search==null||search.size()<1) {
 			return dao.insert(topic);
 		}else {
 			return 0;

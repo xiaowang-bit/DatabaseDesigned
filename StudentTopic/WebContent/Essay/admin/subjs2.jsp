@@ -73,11 +73,13 @@
 		        	</c:forEach>
 				</tbody>
 			</table>
-		</div>
-			<a href="/StudentTopic/Subject2SelectServlet?currentPage=1" style="margin-left: 195px;">首页</a>
+		</div >
+		<div align="center">
+			<a href="/StudentTopic/Subject2SelectServlet?currentPage=1">首页</a>
 			<a href="/StudentTopic/Subject2SelectServlet?currentPage=${sessionScope.subjs2.currentPage==1?1:sessionScope.subjs2.currentPage-1}">上一页</a>
 			<a href="/StudentTopic/Subject2SelectServlet?currentPage=${sessionScope.subjs2.currentPage>sessionScope.subjs2.totalPage?sessionScope.subjs2.currentPage%sessionScope.subjs2.totalPage+1:sessionScope.subjs2.totalPage}">下一页</a>
 			<a href="/StudentTopic/Subject2SelectServlet?currentPage=${sessionScope.subjs2.totalPage}">尾页</a>
+		</div>
 	</body>
 	<script src="../js/jquery-3.2.1.min.js"type="text/javascript"charset="UTF-8"></script>
 	<script src="../bootstrap/js/bootstrap.min.js"type="text/javascript"charset="UTF-8"></script>

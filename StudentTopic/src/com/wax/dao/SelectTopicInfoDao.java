@@ -24,7 +24,18 @@ public class SelectTopicInfoDao {
 		Object[]ob= {i,currentPage*8,(currentPage-1)*8+1};
 		try {
 			list = qr.query(sql,new MapListHandler(),ob);
-			System.out.println(list);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	public List<Map<String, Object>> findAll(){
+		List<Map<String, Object>> list=null;
+		String sql= "select t1.*,t2.*,t3.*,t4.* from select_topic_info t1,topic_info t2,teacher_info t3,student_info t4 "
+				+ "where st_topic_id=topic_id and st_tea_id=tea_id and st_stu_id=stu_id and st_checked='通过'   ";
+		QueryRunner qr=new QueryRunner(JdbcUtils.getDataSource());
+		try {
+			list = qr.query(sql,new MapListHandler());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -51,7 +62,7 @@ public class SelectTopicInfoDao {
 				+ " and team_id=st_team_id and st_tea_id=tea_id and st_stu_id=stu_id "
 				+ "and st_tea_id=? and rownum<=?)"
 				+ "where r>=?";
-		QueryRunner qr=new QueryRunner(DBCPUtilsService.getDataSource());
+		QueryRunner qr=new QueryRunner(JdbcUtils.getDataSource());
 		Object[] ob= {tea_id,currentPage*8,(currentPage-1)*8+1};
 		try {
 			list = qr.query(sql,new MapListHandler(),ob);
@@ -65,7 +76,7 @@ public class SelectTopicInfoDao {
 	public List<Map<String, Object>> search(String st_stu_id){
 		List<Map<String, Object>> list=null;
 		String sql="select * from select_topic_info,topic_info,teacher_info,student_info where st_tea_id=tea_id and st_topic_id=topic_id and stu_id=st_stu_id and st_stu_id=?";
-		QueryRunner qr=new QueryRunner(DBCPUtilsService.getDataSource());
+		QueryRunner qr=new QueryRunner(JdbcUtils.getDataSource());
 		try {
 			list = qr.query(sql,new MapListHandler(),st_stu_id);
 		} catch (SQLException e) {
@@ -77,7 +88,7 @@ public class SelectTopicInfoDao {
 	public List<Map<String, Object>> searchByTopic(String topic_id){
 		List<Map<String, Object>> list=null;
 		String sql="select * from select_topic_info where st_topic_id=?";
-		QueryRunner qr=new QueryRunner(DBCPUtilsService.getDataSource());
+		QueryRunner qr=new QueryRunner(JdbcUtils.getDataSource());
 		try {
 			list = qr.query(sql,new MapListHandler(),topic_id);
 		} catch (SQLException e) {
@@ -89,7 +100,7 @@ public class SelectTopicInfoDao {
 	public List<Map<String, Object>> searchBystu(String topic_id,String st_stu_check){
 		List<Map<String, Object>> list=null;
 		String sql="select * from select_topic_info where st_topic_id=? and st_stu_id=?";
-		QueryRunner qr=new QueryRunner(DBCPUtilsService.getDataSource());
+		QueryRunner qr=new QueryRunner(JdbcUtils.getDataSource());
 		try {
 			list = qr.query(sql,new MapListHandler(),topic_id,st_stu_check);
 		} catch (SQLException e) {
@@ -112,7 +123,7 @@ public class SelectTopicInfoDao {
 	public int delete(String no){
 		int row = 0;
 		String sql = "delete from select_topic_info where st_stu_id= ?";
-		QueryRunner qr=new QueryRunner(DBCPUtilsService.getDataSource());
+		QueryRunner qr=new QueryRunner(JdbcUtils.getDataSource());
 		try {
 			row = qr.update(sql,no);
 		} catch (SQLException e) {
@@ -124,7 +135,7 @@ public class SelectTopicInfoDao {
 	public int updateCheck(SelectTopic_info selectpInfo,String check){
 		int row = 0;
 		String sql = "UPDATE select_topic_info SET st_checked=? WHERE st_topic_id=? and st_stu_id=? and st_team_id = ? and st_tea_id=? ";
-		QueryRunner qr=new QueryRunner(DBCPUtilsService.getDataSource());
+		QueryRunner qr=new QueryRunner(JdbcUtils.getDataSource());
 		Object[]ob= {check,selectpInfo.getSt_topic_id(), selectpInfo.getSt_stu_id(), selectpInfo.getSt_team_id(), selectpInfo.getSt_tea_id()};
 		try {
 			row = qr.update(sql,ob);

@@ -4,6 +4,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<style type="text/css">
+			body{
+				background:url(../img/BG4.jpg);
+				background-size:100%;
+			}
+			p{
+				font-size: 20px;
+			}
+			#lable_{
+					font-size:20px;
+					letter-spacing:3px ;
+			}
+		</style>
 <title>Insert title here</title>
 </head>
 <body>

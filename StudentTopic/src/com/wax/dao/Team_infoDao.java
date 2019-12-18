@@ -31,7 +31,7 @@ public class Team_infoDao {
 		String sql="select * from team_info,topic_info,student_info,course_info,select_topic_info "
 				+ " where st_topic_id=topic_id and st_stu_id=stu_id and course_id=topic_course_id "
 				+ "and team_id=st_team_id and st_tea_id=? and st_checked ='通过' and st_stu_check='组长'";
-		QueryRunner qr=new QueryRunner(DBCPUtilsService.getDataSource());
+		QueryRunner qr=new QueryRunner(JdbcUtils.getDataSource());
 		try {
 			list = qr.query(sql,new MapListHandler(),tea_id);
 		} catch (SQLException e) {

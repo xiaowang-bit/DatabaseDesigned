@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.wax.JavaBeen.Teacher_info;
 import com.wax.JavaBeen.Team_info;
+import com.wax.dao.Teacher_InfoDao;
 import com.wax.dao.Team_infoDao;
 import com.wax.dao.Topic_InfoDao;
 import com.wax.utils.Page;
@@ -31,12 +33,15 @@ public class StudentSelectServlet extends HttpServlet {
 		//将分页所需的5个字段组装到page对象中
 		int currentPage=Integer.parseInt(request.getParameter("currentPage"));
 		Topic_InfoDao dao = new Topic_InfoDao();
+		Teacher_InfoDao dao2=new Teacher_InfoDao();
+		List<Teacher_info> teas = dao2.searchAll(currentPage);
 		int totalCount = dao.getTotalCount();
 		List<Map<String, Object>> list = dao.findAll(currentPage);
 		Page page=new Page(list,totalCount,currentPage);
 		HttpSession session = request.getSession();
 		System.out.println(teams);
 		session.setAttribute("subjs", page);
+		session.setAttribute("teas", teas);
 		session.setAttribute("teams", teams);
 		response.sendRedirect("/StudentTopic/Essay/student/subjs.jsp");		
 	}

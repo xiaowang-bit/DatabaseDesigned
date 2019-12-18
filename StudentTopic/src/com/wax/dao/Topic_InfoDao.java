@@ -27,7 +27,7 @@ public class Topic_InfoDao {
 				+ ")"
 				+ "where r>=?";
 		Object[]ob= {currentPage*8,(currentPage-1)*8+1};
-		QueryRunner qr=new QueryRunner(DBCPUtilsService.getDataSource());
+		QueryRunner qr=new QueryRunner(JdbcUtils.getDataSource());
 		try {
 			list = qr.query(sql,new MapListHandler(),ob);
 		} catch (SQLException e) {
@@ -39,7 +39,7 @@ public class Topic_InfoDao {
 	public List<Topic_info> search(String topic_id){
 		List<Topic_info> list=null;
 		String sql="select * from  topic_info where topic_id=?";
-		QueryRunner qr=new QueryRunner(DBCPUtilsService.getDataSource());
+		QueryRunner qr=new QueryRunner(JdbcUtils.getDataSource());
 		try {
 			list = qr.query(sql,new BeanListHandler<Topic_info>(Topic_info.class,new BasicRowProcessor(new GenerousBeanProcessor())),topic_id);
 		} catch (SQLException e) {
@@ -52,7 +52,7 @@ public class Topic_InfoDao {
 		String sql="select * from (select * from topic_info,course_info "
 				+ "where topic_course_id(+)=course_id) "
 				+ "where topic_tea_id=? or topic_tea_id is null";
-		QueryRunner qr=new QueryRunner(DBCPUtilsService.getDataSource());
+		QueryRunner qr=new QueryRunner(JdbcUtils.getDataSource());
 		try {
 			list = qr.query(sql,new MapListHandler(),tea_id);
 			System.out.println(list);
@@ -71,7 +71,7 @@ public class Topic_InfoDao {
 				+ " and topic_tea_id=? and topic_tea_id=tea_id and rownum<=?"
 				+ ")"
 				+ " where r>=?";
-		QueryRunner qr=new QueryRunner(DBCPUtilsService.getDataSource());
+		QueryRunner qr=new QueryRunner(JdbcUtils.getDataSource());
 		Object[]ob= {tea_id,currentPage*8,(currentPage-1)*8+1};
 		try {
 			list = qr.query(sql,new MapListHandler(),ob);
@@ -85,7 +85,7 @@ public class Topic_InfoDao {
 		int row=0;
 		String sql="delete from topic_info "
 				+ " where topic_tea_id=? and topic_course_id=? and topic_id=? ";
-		QueryRunner qr=new QueryRunner(DBCPUtilsService.getDataSource());
+		QueryRunner qr=new QueryRunner(JdbcUtils.getDataSource());
 		Object[] ob= {tea_id,course_id,topic_id};
 		try {
 			row = qr.update(sql,ob);
@@ -100,7 +100,7 @@ public class Topic_InfoDao {
 		String sql="update topic_info "
 				+ "set topic_name =?,topic_content =?,topic_limit_stu =?,topic_semater =?"
 				+ " where topic_tea_id=? and topic_course_id=? and topic_id=? ";
-		QueryRunner qr=new QueryRunner(DBCPUtilsService.getDataSource());
+		QueryRunner qr=new QueryRunner(JdbcUtils.getDataSource());
 		Object[] obs= {topic.getTopic_name(),topic.getTopic_content(),topic.getTopic_limit_stu(),topic.getTopic_semater(),topic.getTopic_tea_id(),topic.getTopic_course_id(),topic.getTopic_id()};
 		try {
 			row = qr.update(sql,obs);
@@ -115,7 +115,7 @@ public class Topic_InfoDao {
 		String sql="insert into topic_info(topic_name,topic_content,topic_limit_stu,topic_semater,"
 				+ " topic_tea_id , topic_course_id , topic_id ) "
 				+ "values( ?,?,?,?,?,?,? )";
-		QueryRunner qr=new QueryRunner(DBCPUtilsService.getDataSource());
+		QueryRunner qr=new QueryRunner(JdbcUtils.getDataSource());
 		Object[] obs= {topic.getTopic_name(),topic.getTopic_content(),topic.getTopic_limit_stu(),topic.getTopic_semater(),topic.getTopic_tea_id(),topic.getTopic_course_id(),topic.getTopic_id()};
 		try {
 			row = qr.update(sql,obs);

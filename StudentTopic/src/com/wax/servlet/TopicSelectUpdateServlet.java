@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.JOptionPane;
 
 import com.wax.dao.SelectTopicInfoDao;
 import com.wax.service.TeacherService;
@@ -34,7 +35,11 @@ public class TopicSelectUpdateServlet extends HttpServlet {
 		int row = ts.updateCheck(topic_id, stu_id, tea_id, team_id, check);
 		if(row>0)
 		{
-			response.sendRedirect("success.jsp");
+			Object[] options = { "确定" }; 
+        	JOptionPane.showOptionDialog(null, "操作成功！", "提示", 
+        	JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, 
+        	null, options, options[0]); 
+			response.sendRedirect("/StudentTopic/Essay/teacher/add_essay2.jsp");
 		}
 		else{
 			response.sendRedirect("fail.jsp");

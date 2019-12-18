@@ -5,6 +5,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 
 import com.wax.dao.Course_infoDao;
 import com.wax.dao.Topic_InfoDao;
@@ -31,7 +32,11 @@ public class CourseAddServlet extends HttpServlet {
 			int row = dao.insert(course_id, course_name, course_grade);
 			if(row>0)
 			{
-				response.sendRedirect("success.jsp");
+				Object[] options = { "确定" }; 
+	        	JOptionPane.showOptionDialog(null, "添加成功！", "提示", 
+	        	JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, 
+	        	null, options, options[0]); 
+				response.sendRedirect("/StudentTopic/Essay/teacher/add_essay2.jsp");
 			}
 			else{
 				response.sendRedirect("fail.jsp");

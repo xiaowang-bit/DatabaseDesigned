@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.wax.dao.Course_infoDao;
 import com.wax.dao.Topic_InfoDao;
+import com.wax.utils.Page;
 
 public class TopicToTeacherServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -35,8 +36,10 @@ public class TopicToTeacherServlet extends HttpServlet {
 		String tea_id = request.getParameter("tea_id");
 		Topic_InfoDao dao=new Topic_InfoDao();
 		List<Map<String, Object>> topics = dao.searchAllByTea(tea_id,currentPage);
+		int totalCount = dao.getTotalCount();
 		HttpSession session = request.getSession();
-		session.setAttribute("topics", topics);
+		Page page=new Page(topics,totalCount, currentPage);
+		session.setAttribute("topics", page);
 		Course_infoDao cdao=new Course_infoDao();
 		List<Map<String, Object>> courses = cdao.findAll();
 		session.setAttribute("courses", courses);

@@ -108,7 +108,7 @@
         					<label class="control-label col-sm-2">学院</label>
         					<div class="col-sm-6">
         						<input type="text"class="form-control"
-        							id="tea_academy" name="tea_academy"readonly="readonly"/>
+        							id="tea_academy" name="tea_academy"/>
         					</div>
         				</div>
         				<div class="form-group ">

@@ -18,7 +18,7 @@ public class Class_InfoDao {
 	public int insert(Class_Info cla)
 	{
 		int str = 0;
-		QueryRunner qr=new QueryRunner(DBCPUtilsService.getDataSource());
+		QueryRunner qr=new QueryRunner(JdbcUtils.getDataSource());
 		String sql = "insert into class_info values(?,?,?,?,?)";
 		Object[] agure= {cla.getClass_id(),cla.getClass_grade(),cla.getClass_name(), cla.getClass_major(), cla.getClass_academy()};
 		try {
@@ -33,7 +33,7 @@ public class Class_InfoDao {
 	{
 		int row = 0;
 		String sql = "delete from class_info where class_grade=? and class_name=? and class_major=? and class_academy=?";
-		QueryRunner qr=new QueryRunner(DBCPUtilsService.getDataSource());
+		QueryRunner qr=new QueryRunner(JdbcUtils.getDataSource());
 		Object[]ob= {class_grade,class_name,class_major ,class_academy};
 		try {
 			row = qr.update( sql,ob);
@@ -47,7 +47,7 @@ public class Class_InfoDao {
 		int row = 0;
 		String sql = "update class_info set class_grade=? and class_name=? and class_major=? and class_academy=? "
 				+ "where class_grade=? and class_name=? and class_major=? and class_academy=?";
-		QueryRunner qr=new QueryRunner(DBCPUtilsService.getDataSource());
+		QueryRunner qr=new QueryRunner(JdbcUtils.getDataSource());
 		Object[]ob= {class_grade,class_name,class_major ,class_academy,class_grade,class_name,class_major ,class_academy};
 		try {
 			row = qr.update( sql,ob);

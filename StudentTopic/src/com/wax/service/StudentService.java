@@ -31,6 +31,10 @@ public class StudentService {
 	} 
 	public int deleteTopic(String stu_id) {
 		SelectTopicInfoDao dao=new SelectTopicInfoDao();
+		List<Map<String, Object>> search = dao.search(stu_id);
+		if("通过".equals(search.get(0).get("st_checked"))){
+			return 0;
+		}
 		return dao.delete(stu_id);
 	}
 	public List<Map<String, Object>> searchStu(String stu_id) {

@@ -70,10 +70,12 @@
 				</tbody>
 			</table>
 		</div>
-		<a href="/StudentTopic/Subject1SelectServlet?currentPage=1" style="margin-left: 195px;">首页</a>
+		<div  align="center">
+		<a href="/StudentTopic/Subject1SelectServlet?currentPage=1">首页</a>
 			<a href="/StudentTopic/Subject1SelectServlet?currentPage=${sessionScope.subjs1.currentPage==1?1:sessionScope.subjs1.currentPage-1}">上一页</a>
 			<a href="/StudentTopic/Subject1SelectServlet?currentPage=${sessionScope.subjs1.currentPage>sessionScope.subjs1.totalPage?sessionScope.subjs1.currentPage%sessionScope.subjs1.totalPage+1:sessionScope.subjs1.totalPage}">下一页</a>
 			<a href="/StudentTopic/Subject1SelectServlet?currentPage=${sessionScope.subjs1.totalPage}">尾页</a>
+		</div>
 	</body>
 	<script src="../js/jquery-3.2.1.min.js"type="text/javascript"charset="UTF-8"></script>
 	<script src="../bootstrap/js/bootstrap.min.js"type="text/javascript"charset="UTF-8"></script>

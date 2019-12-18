@@ -32,7 +32,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var = "item" items="${sessionScope.topics }">
+					<c:forEach var = "item" items="${sessionScope.topics.objectList }">
 						<tr>
 							<td>${item.topic_semater }</td>
 					   	 	<td>${item.course_id }</td>
@@ -50,12 +50,16 @@
 				</tbody>
 			</table>
 		</div>
-			<div class="addstu" align="center">
-					<a href="#" onclick="addTopic('${sessionScope.login_tea.tea_id}')">
-						<button type="submit" class="btn btn-primary">添加题目</button>
-					</a>		
-			</div>
-			
+		<div class="addstu" >
+				<a href="#" onclick="addTopic('${sessionScope.login_tea.tea_id}')"style="margin-left:600px;">
+					<button type="submit" class="btn btn-primary">添加题目</button>
+				</a>		
+		
+				<a href="/StudentTopic/TopicSelectTeacherServlet?currentPage=1&tea_id=${sessionScope.login_tea.tea_id}"style="margin-left:350px;" >首页</a>
+				<a href="/StudentTopic/TopicSelectTeacherServlet?currentPage=${sessionScope.topics.currentPage==1?1:sessionScope.topics.currentPage-1}&tea_id=${sessionScope.login_tea.tea_id}">上一页</a>
+				<a href="/StudentTopic/TopicSelectTeacherServlet?currentPage=${sessionScope.topics.currentPage>sessionScope.topics.totalPage?sessionScope.topics.currentPage%sessionScope.topics.totalPage+1:sessionScope.topics.totalPage}&tea_id=${sessionScope.login_tea.tea_id}">下一页</a>
+				<a href="/StudentTopic/TopicSelectTeacherServlet?currentPage=${sessionScope.topics.totalPage}&tea_id=${sessionScope.login_tea.tea_id}">尾页</a>
+		</div>
 		<form action="/StudentTopic/TopicDeleteServlet" method="post" class="form-horizontal">
 			<input type="hidden" name="topic_id" id="topic_id2">
 			<input type="hidden" name="course_id" id="course_id2">
@@ -82,6 +86,9 @@
 	   	<div class="modal"id="model_update">
         	<div class="modal-dialog">
         		<div class="modal-content">
+        		<input type="hidden" id="tea_id1" name="tea_id">
+        		<input type="hidden" id="topic_id1" name="topic_id">
+        		<input type="hidden" id="course_id1" name="course_id">
         			<div class="modal-header">
         				<h1>编辑要修改的内容</h1>
         			</div>
@@ -94,53 +101,18 @@
         					</div>
         				</div>
         				<div class="form-group ">
-        					<label class="control-label col-sm-2">题号</label>
-        					<div class="col-sm-6">
-        						<input type="text"class="form-control"
-        							id="topic_id1" name="topic_id" readonly="readonly" />
-        				</div>
-        				</div>
-        				<div class="form-group ">
         					<label class="control-label col-sm-2">题名</label>
         					<div class="col-sm-6">
         						<input type="text"class="form-control"
         							id="topic_name1" name="topic_name"/>
         					</div>
         				</div>
-        				
-        				<div class="form-group ">
-        					<label class="control-label col-sm-2">课程号</label>
-        					<div class="col-sm-6">
-        						<input type="text"class="form-control"
-        							id="course_id1" name="course_id" readonly="readonly"/>
-        					</div>
-        				</div>
+
         				<div class="form-group ">
         					<label class="control-label col-sm-2">课程名</label>
         					<div class="col-sm-6">
         						<input type="text"class="form-control"
         							id="course_name1" name="course_name" readonly="readonly"/>
-        					</div>
-        				</div>
-        				<div class="form-group ">
-        					<label class="control-label col-sm-2">老师号</label>
-        					<div class="col-sm-6">
-        						<input type="text"class="form-control"
-        							id="tea_id1" name="tea_id" readonly="readonly"/>
-        					</div>
-        				</div>
-        				<div class="form-group ">
-        					<label class="control-label col-sm-2">老师名</label>
-        					<div class="col-sm-6">
-        						<input type="text"class="form-control"
-        							id="tea_name1" name="tea_name" readonly="readonly"/>
-        					</div>
-        				</div>
-        				<div class="form-group ">
-        					<label class="control-label col-sm-2">题目内容</label>
-        					<div class="col-sm-6">
-        						<input type="text"class="form-control"
-        							id="topic_content1" name="topic_content"/>
         					</div>
         				</div>
         				<div class="form-group ">
@@ -150,6 +122,15 @@
         							id="topic_limit_stu1" name="topic_limit_stu"/>
         					</div>
         				</div>
+        				<div class="form-group ">
+        					<label class="control-label col-sm-2">题目内容</label>
+        					<div class="col-sm-6">
+        						<textarea class="form-control"
+        							id="topic_content1" name="topic_content" rows="15">
+        						</textarea>
+        					</div>
+        				</div>
+        				
         				
         			</div>
        				<div class="modal-footer">
@@ -189,7 +170,8 @@
         					<label class="control-label col-sm-2">题目内容</label>
         					<div class="col-sm-6">
         						<textarea  style="overflow-x:scroll "class="form-control"
-        							id="topic_content" name="topic_content"readonly="readonly">
+        							id="topic_content" name="topic_content"readonly="readonly"
+        							rows="15">
         						</textarea>
         					</div>
         				</div>
@@ -203,16 +185,14 @@
         	<div class="modal-dialog">
         		<div class="modal-content">
         			<div class="modal-header">
-        				请选择你要添加题目的所在课程号：
+        				请选择你要添加题目的所在课程：
 		       				<select name="course_id" id="course_id"> 
 		      					<c:forEach var = "item" items="${sessionScope.courses }">
-									<OPTION value="${item.course_id }">${item.course_id }</OPTION> 
+									<OPTION value="${item.course_id }">${item.course_name }</OPTION> 
 								</c:forEach>
 							</select>
 						<div class="addstu" align="right">
-							<a href="addCourse.jsp" target="center">
-								添加课程
-							</a>		
+							<a href="addCourse.jsp">添加课程</a>
 						</div>
         			</div>
         			<div class="modal-body">
@@ -239,27 +219,28 @@
         				</div>
         				
         				<div class="form-group ">
-        					<label class="control-label col-sm-2">老师号</label>
+        					<label class="control-label col-sm-2">老师工号</label>
         					<div class="col-sm-6">
         						<input type="text"class="form-control"
         							id="tea_id3" name="tea_id" readonly="readonly" />
         					</div>
         				</div>
-        				
-        				<div class="form-group ">
-        					<label class="control-label col-sm-2">题目内容</label>
-        					<div class="col-sm-6">
-        						<input type="text"class="form-control"
-        							id="topic_content1" name="topic_content"/>
-        					</div>
-        				</div>
-        				<div class="form-group ">
+      				    <div class="form-group ">
         					<label class="control-label col-sm-2">限制人数</label>
         					<div class="col-sm-6">
         						<input type="text"class="form-control"
         							id="topic_limit_stu1" name="topic_limit_stu"/>
         					</div>
         				</div>
+        				<div class="form-group ">
+        					<label class="control-label col-sm-2">题目内容</label>
+        					<div class="col-sm-6">
+        						<textarea class="form-control"
+        							id="topic_content1" name="topic_content" rows="15">
+        						</textarea>
+        					</div>
+        				</div>
+
         				
         			</div>
 	      				<div class="modal-footer">
@@ -305,8 +286,8 @@
         				
         			</div>
        				<div class="modal-footer">
-       					<button type="submit"class="btn btn-sm btn-danger">添加</button>
-       					<button type="reset"class="btn btn-sm btn-default"
+       					<button type="submit"class="btn btn-sm btn-info">添加</button>
+       					<button type="reset"class="btn btn-sm btn-primary"
        						data-dismiss = "modal">取消</button>
        				</div>
         		</div>

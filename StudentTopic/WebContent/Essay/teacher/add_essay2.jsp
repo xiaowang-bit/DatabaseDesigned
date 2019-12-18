@@ -65,7 +65,7 @@
 		<input type="hidden" name="stu_id" id="stu_id">
 		<input type="hidden" name="tea_id" id="tea_id">
 		<input type="hidden" name="st_team_id" id="st_team_id">
-		<input type="hidden" name="st_checked" id="tea_id" value="通过">
+		<input type="hidden" name="st_checked"  value="通过">
 		<div class="modal" id="model_check">
 			<div class="modal-dialog">
 			    <div class="modal-content">
@@ -89,7 +89,7 @@
 		<input type="hidden" name="stu_id" id="stu_id1">
 		<input type="hidden" name="tea_id" id="tea_id1">
 		<input type="hidden" name="st_team_id" id="st_team_id1">
-		<input type="hidden" name="st_checked" id="u_name1" value="不通过">
+		<input type="hidden" name="st_checked"  value="不通过">
 		<div class="modal" id="model_delete">
 			<div class="modal-dialog">
 			    <div class="modal-content">

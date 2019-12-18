@@ -5,6 +5,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 
 import com.wax.JavaBeen.Topic_info;
 import com.wax.dao.Topic_InfoDao;
@@ -39,7 +40,11 @@ public class TopicUpdateServlet extends HttpServlet {
 			int row = dao.updateTopic(topic);
 			if(row>0)
 			{
-				response.sendRedirect("success.jsp");
+				Object[] options = { "确定" }; 
+	        	JOptionPane.showOptionDialog(null, "修改成功！", "提示", 
+	        	JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, 
+	        	null, options, options[0]); 
+				response.sendRedirect("/StudentTopic/Essay/teacher/subjects.jsp");
 			}
 			else{
 				response.sendRedirect("fail.jsp");

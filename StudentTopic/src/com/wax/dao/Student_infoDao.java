@@ -24,7 +24,7 @@ public class Student_infoDao{
 	{
 		int row = 0;
 		String sql = "insert into student_info values(?,?,?,?,?,?,?)";
-		QueryRunner qr=new QueryRunner(DBCPUtilsService.getDataSource());
+		QueryRunner qr=new QueryRunner(JdbcUtils.getDataSource());
 		try {
 			Object[] ob= {stu.getStu_id(), stu.getStu_name(), stu.getStu_class_id(), stu.getStu_sex(), stu.getStu_phone(), stu.getStu_email(), stu.getStu_pwd()};
 			row = qr.update(sql,ob);
@@ -40,7 +40,7 @@ public class Student_infoDao{
 				+ "stu_name=?,"
 				+ "stu_sex =?,stu_pwd=?,stu_phone=?,"
 				+ "stu_email=? where stu_id=? and stu_class_id=?";
-		QueryRunner qr=new QueryRunner(DBCPUtilsService.getDataSource());
+		QueryRunner qr=new QueryRunner(JdbcUtils.getDataSource());
 		Object[]ob={stu.getStu_name(),stu.getStu_sex(),stu.getStu_pwd(),stu.getStu_phone(),stu.getStu_email(),stu.getStu_id(),stu.getStu_class_id()};
 		try {
 			row = qr.update(sql,ob);
@@ -54,7 +54,7 @@ public class Student_infoDao{
 	{
 		int row = 0;
 		String sql = "delete from student_info where stu_id=?";
-		QueryRunner qr=new QueryRunner(DBCPUtilsService.getDataSource());
+		QueryRunner qr=new QueryRunner(JdbcUtils.getDataSource());
 		try {
 			row = qr.update(sql,no);
 		} catch (SQLException e) {
@@ -67,7 +67,7 @@ public class Student_infoDao{
 	{
 		List<Map<String, Object>> list = null;
 		String sql = "select * from student_info,class_info where stu_id=? and class_id=stu_class_id";
-		QueryRunner qr=new QueryRunner(DBCPUtilsService.getDataSource());
+		QueryRunner qr=new QueryRunner(JdbcUtils.getDataSource());
 		try {
 			list = qr.query(sql,new MapListHandler(),stu_id);
 		} catch (SQLException e) {
@@ -79,7 +79,7 @@ public class Student_infoDao{
 	{
 		List<Map<String, Object>> list = null;
 		String sql = "select * from student_info where stu_id=? and stu_pwd = ? ";
-		QueryRunner qr=new QueryRunner(DBCPUtilsService.getDataSource());
+		QueryRunner qr=new QueryRunner(JdbcUtils.getDataSource());
 		Object[]ob= {no,pwd};
 		try {
 			list=qr.query(sql,new MapListHandler(), ob);

@@ -3,9 +3,11 @@ package com.wax.service;
 import java.util.List;
 import java.util.Map;
 
+import com.wax.JavaBeen.Admin_info;
 import com.wax.JavaBeen.Class_Info;
 import com.wax.JavaBeen.Student_info;
 import com.wax.JavaBeen.Teacher_info;
+import com.wax.dao.Admin_InfoDao;
 import com.wax.dao.Class_InfoDao;
 import com.wax.dao.SelectTopicInfoDao;
 import com.wax.dao.Student_infoDao;
@@ -65,5 +67,9 @@ public class AdminService {
 		SelectTopicInfoDao dao=new SelectTopicInfoDao();
 		List<Map<String, Object>> list = dao.findAll(i, currentPage);
 		return list;
+	}
+	public int updateAdmin_info(Admin_info admin) {
+		Admin_InfoDao dao=new Admin_InfoDao();
+		return dao.update(admin);
 	}
 }

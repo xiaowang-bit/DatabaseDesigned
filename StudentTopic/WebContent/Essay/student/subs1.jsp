@@ -26,8 +26,8 @@
 			老师编号查询：
 			<form action="/StudentTopic/StudentSelectByteaIdServlet" method="post">
 				<select name="select_tea_id" id="select_tea_id"> 
-		        	<c:forEach var="item" items="${sessionScope.subjs.objectList }">
-						<OPTION value="${item.topic_tea_id}" >${item.tea_name}</OPTION> 
+		        	<c:forEach var="item" items="${sessionScope.teas }">
+						<OPTION value="${item.tea_id}" >${item.tea_name}</OPTION> 
 	        		</c:forEach>
 				</select> 
 				<input type="submit" value="查询">
@@ -41,7 +41,6 @@
 						<th>老师编号</th>
 						<th>老师名字</th>
 						<th>课程名字</th>
-						<th>题目内容</th>
 						<th>限制人数</th>
 						<th>操作</th>
 					</tr>
@@ -54,9 +53,9 @@
 				    	<td>${item.tea_id }</td>
 				    	<td>${item.tea_name }</td>
 				    	<td>${item.course_name}</td>
-				    	<td>${item.topic_content}</td>
 				    	<td>${item.topic_limit_stu}</td>
 				    	<td>
+  				    		<a href="#" onclick="showinfo('${item.topic_limit_stu}','${item.topic_name}','${item.tea_name}','${item.topic_content} ')">详情 </a>
 			    			<a href="#" onclick="showDelete('${item.topic_id}','${item.course_id}','${item.tea_id}','${item.topic_semater }')">选择 </a>
 			    		</td>
 				    	</tr>
@@ -106,6 +105,45 @@
 			    </div>
 		    </div>
 	    </form>
+	     
+	   	<form class="form-horizontal">
+		  <div class="modal"id="modal_showinfo">
+		     	 <div class="modal-dialog">
+		       	  <div class="modal-content">
+		       			<div class="modal-header">
+		       				<h1>详情</h1>
+		       			</div>
+		       			<div class="modal-body">
+		       				
+		       				<div class="form-group ">
+		       					<label class="control-label col-sm-2">题名</label>
+		       					<div class="col-sm-6">
+		       						<input type="text"class="form-control"
+		       							id="topic_name" name="topic_name"readonly="readonly"/>
+		       					</div>
+		       				</div>
+		       				<div class="form-group ">
+		       					<label class="control-label col-sm-2">限制人数</label>
+		       					<div class="col-sm-6">
+		       						<input type="text"class="form-control"
+		       							id="topic_limit_stu" name="topic_limit_stu"readonly="readonly"/>
+		       					</div>
+		       				</div>
+		       				
+		       				<div class="form-group ">
+		       					<label class="control-label col-sm-2">题目内容</label>
+		       					<div class="col-sm-6">
+		       						<textarea  style="overflow-x:scroll "class="form-control"
+		       							id="topic_content" name="topic_content"readonly="readonly" 
+		       							rows="15">
+		       						</textarea>
+		       					</div>
+		       				</div>
+		       			</div>
+		       		</div>
+		       	</div>
+		    </div>
+		</form>
 	</body>
 	<script src="../js/jquery-3.2.1.min.js"type="text/javascript"charset="UTF-8"></script>
 	<script src="../bootstrap/js/bootstrap.min.js"type="text/javascript"charset="UTF-8"></script>
@@ -118,6 +156,14 @@
 			jQuery("#course_id").val(n1);
 			jQuery("#st_semater").val(n3);
 			jQuery("#tea_id").val(n2);
+		}
+		function showinfo(topic_limit_stu,topic_name,tea_name,topic_content)
+		{
+			jQuery("#modal_showinfo").modal();
+			jQuery("#topic_limit_stu").val(topic_limit_stu);
+			jQuery("#tea_name").val(tea_name);
+			jQuery("#topic_content").val(topic_content);
+			jQuery("#topic_name").val(topic_name);
 		}
 	</script>
 </html>

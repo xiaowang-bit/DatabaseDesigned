@@ -42,7 +42,7 @@ public class TeacherUpdateServlet extends HttpServlet {
         	JOptionPane.showOptionDialog(null, "修改成功！", "提示", 
         	JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, 
         	null, options, options[0]); 
-        	response.sendRedirect("/StudentTopic/Essay/admin/teas.jsp");
+        	response.sendRedirect("success.jsp");
 		}
 		else{
 			response.sendRedirect("fail.jsp");

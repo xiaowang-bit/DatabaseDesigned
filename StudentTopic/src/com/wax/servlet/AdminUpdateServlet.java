@@ -7,14 +7,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.swing.JOptionPane;
 
-import com.wax.JavaBeen.Student_info;
-import com.wax.dao.Student_infoDao;
-import com.wax.service.StudentService;
-
-public class StudentUpdateServlet extends HttpServlet {
+import com.wax.JavaBeen.Admin_info;
+import com.wax.JavaBeen.Teacher_info;
+import com.wax.dao.Teacher_InfoDao;
+import com.wax.service.AdminService;
+public class AdminUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public StudentUpdateServlet() {
+    public AdminUpdateServlet() {
         super();
     }
 
@@ -23,23 +23,25 @@ public class StudentUpdateServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
-		Student_info stu=new Student_info();
-		stu.setStu_id(request.getParameter("stu_id"));
-		stu.setStu_name(request.getParameter("stu_name"));
-		stu.setStu_class_id(request.getParameter("stu_class_id"));
-		stu.setStu_phone(request.getParameter("stu_phone"));
-		stu.setStu_pwd(request.getParameter("stu_pwd"));
-		stu.setStu_sex(request.getParameter("stu_sex"));
-		stu.setStu_email(request.getParameter("stu_email"));
-		StudentService dao = new StudentService();
-		int row = dao.updateStudentInfo(stu);
+		Admin_info admin=new Admin_info();
+		admin.setAdmin_id(request.getParameter("admin_id"));
+		admin.setAdmin_name(request.getParameter("admin_name"));
+		admin.setAdmin_academy(request.getParameter("admin_academy"));
+		admin.setAdmin_phone(request.getParameter("admin_phone"));
+		admin.setAdmin_pwd(request.getParameter("admin_pwd"));
+		admin.setAdmin_sex(request.getParameter("admin_sex"));
+		admin.setAdmin_title(request.getParameter("admin_title"));
+		admin.setAdmin_email(request.getParameter("admin_email"));
+		AdminService dao = new AdminService();
+		int row = dao.updateAdmin_info(admin);
+		
 		if(row>0)
 		{
 			Object[] options = { "确定" }; 
         	JOptionPane.showOptionDialog(null, "修改成功！", "提示", 
         	JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, 
         	null, options, options[0]); 
-        	response.sendRedirect("success.jsp");
+        	response.sendRedirect("/StudentTopic/Essay/admin/main.html");
 		}
 		else{
 			response.sendRedirect("fail.jsp");
@@ -47,6 +49,7 @@ public class StudentUpdateServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

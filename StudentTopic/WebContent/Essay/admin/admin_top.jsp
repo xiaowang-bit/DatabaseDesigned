@@ -76,6 +76,7 @@
 			<div id="center">
 				<label class="label_"  style="margin: 0px;">Welcom Admin:</label>
 			    <label class="label_" >【${sessionScope.login_admin.admin_name}】</label>
+			    <label class="label_"  ><a href="admin_info.jsp" target="center">个人信息</a></label>
 			</div>
 		</div>
 	</body>
