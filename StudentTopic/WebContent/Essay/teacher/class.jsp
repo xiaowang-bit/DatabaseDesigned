@@ -50,7 +50,7 @@
 		</table>
 	</div>
 	<div align="center">
-	<a href="/StudentTopic/DownloadServlet"><button >导出课程设计选题清单</button> </a>
+	<a href="/StudentTopic/DownloadServlet?tea_id=${sessionScope.login_tea.tea_id}"><button >导出课程设计选题清单</button> </a>
 	</div>
 	</body>
 	<script src="../js/jquery-3.2.1.min.js"type="text/javascript"charset="UTF-8"></script>
