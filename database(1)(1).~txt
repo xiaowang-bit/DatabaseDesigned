@@ -145,7 +145,7 @@ INSERT INTO teacher_info VALUES ('T0004', '徐小强', '男','楚才学院','副教授','14
 CREATE TABLE topic_info (
   topic_id varchar(20) NOT NULL,
   topic_name varchar(50) NOT NULL,
-  topic_content varchar(2000) DEFAULT NULL,
+  topic_content varchar(1000) DEFAULT NULL,
   topic_tea_id varchar(50) NOT NULL,
   topic_course_id varchar(50) NOT NULL,
   topic_limit_stu varchar(50) NOT NULL,

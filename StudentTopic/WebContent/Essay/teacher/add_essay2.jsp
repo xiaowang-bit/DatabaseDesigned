@@ -34,7 +34,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var = "item" items="${sessionScope.topics.objectList }">
+					<c:forEach var = "item" items="${sessionScope.atopics.objectList }">
 						<tr>
 							<td>${item.topic_id }</td>
 							<td>${item.COURSE_NAME}</td>
@@ -54,9 +54,9 @@
 			</table>
 			<div align="center">
 					<a href="/StudentTopic/TopicSelectTeacherServlet?currentPage=1&tea_id=${sessionScope.login_tea.tea_id}">首页</a>
-					<a href="/StudentTopic/TopicSelectTeacherServlet?currentPage=${sessionScope.topics.currentPage==1?1:sessionScope.topics.currentPage-1}&tea_id=${sessionScope.login_tea.tea_id}">上一页</a>
-					<a href="/StudentTopic/TopicSelectTeacherServlet?currentPage=${sessionScope.topics.currentPage>sessionScope.topics.totalPage?sessionScope.topics.currentPage%sessionScope.topics.totalPage+1:sessionScope.topics.totalPage}&tea_id=${sessionScope.login_tea.tea_id}">下一页</a>
-					<a href="/StudentTopic/TopicSelectTeacherServlet?currentPage=${sessionScope.topics.totalPage}&tea_id=${sessionScope.login_tea.tea_id}">尾页</a>
+					<a href="/StudentTopic/TopicSelectTeacherServlet?currentPage=${sessionScope.atopics.currentPage==1?1:sessionScope.atopics.currentPage-1}&tea_id=${sessionScope.login_tea.tea_id}">上一页</a>
+					<a href="/StudentTopic/TopicSelectTeacherServlet?currentPage=${sessionScope.atopics.currentPage>sessionScope.atopics.totalPage?sessionScope.atopics.currentPage%sessionScope.atopics.totalPage+1:sessionScope.atopics.totalPage}&tea_id=${sessionScope.login_tea.tea_id}">下一页</a>
+					<a href="/StudentTopic/TopicSelectTeacherServlet?currentPage=${sessionScope.atopics.totalPage}&tea_id=${sessionScope.login_tea.tea_id}">尾页</a>
 			</div>
 		</div>
 			

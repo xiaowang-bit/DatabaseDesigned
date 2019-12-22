@@ -41,7 +41,7 @@ public class TopicSelectTeacherServlet extends HttpServlet {
 		int tatolCount = dao.getTatolCount();
 		HttpSession session = request.getSession();
 		Page page=new Page(topics,tatolCount,currentPage);
-		session.setAttribute("topics", page);
+		session.setAttribute("atopics", page);
 		response.sendRedirect("/StudentTopic/Essay/teacher/add_essay2.jsp");
 	}
 

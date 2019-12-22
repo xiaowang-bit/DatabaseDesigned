@@ -55,10 +55,10 @@
 					<button type="submit" class="btn btn-primary">添加题目</button>
 				</a>		
 		
-				<a href="/StudentTopic/TopicSelectTeacherServlet?currentPage=1&tea_id=${sessionScope.login_tea.tea_id}"style="margin-left:350px;" >首页</a>
-				<a href="/StudentTopic/TopicSelectTeacherServlet?currentPage=${sessionScope.topics.currentPage==1?1:sessionScope.topics.currentPage-1}&tea_id=${sessionScope.login_tea.tea_id}">上一页</a>
-				<a href="/StudentTopic/TopicSelectTeacherServlet?currentPage=${sessionScope.topics.currentPage>sessionScope.topics.totalPage?sessionScope.topics.currentPage%sessionScope.topics.totalPage+1:sessionScope.topics.totalPage}&tea_id=${sessionScope.login_tea.tea_id}">下一页</a>
-				<a href="/StudentTopic/TopicSelectTeacherServlet?currentPage=${sessionScope.topics.totalPage}&tea_id=${sessionScope.login_tea.tea_id}">尾页</a>
+				<a href="/StudentTopic/TopicToTeacherServlet?currentPage=1&tea_id=${sessionScope.login_tea.tea_id}"style="margin-left:350px;" >首页</a>
+				<a href="/StudentTopic/TopicToTeacherServlet?currentPage=${sessionScope.topics.currentPage==1?1:sessionScope.topics.currentPage-1}&tea_id=${sessionScope.login_tea.tea_id}">上一页</a>
+				<a href="/StudentTopic/TopicToTeacherServlet?currentPage=${sessionScope.topics.currentPage>sessionScope.topics.totalPage?sessionScope.topics.currentPage%sessionScope.topics.totalPage+1:sessionScope.topics.totalPage}&tea_id=${sessionScope.login_tea.tea_id}">下一页</a>
+				<a href="/StudentTopic/TopicToTeacherServlet?currentPage=${sessionScope.topics.totalPage}&tea_id=${sessionScope.login_tea.tea_id}">尾页</a>
 		</div>
 		<form action="/StudentTopic/TopicDeleteServlet" method="post" class="form-horizontal">
 			<input type="hidden" name="topic_id" id="topic_id2">
