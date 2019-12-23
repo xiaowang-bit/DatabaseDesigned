@@ -126,7 +126,7 @@
         					<label class="control-label col-sm-2">题目内容</label>
         					<div class="col-sm-6">
         						<textarea class="form-control"
-        							id="topic_content1" name="topic_content" rows="15">
+        							id="topic_content1" name="topic_content" rows="6">
         						</textarea>
         					</div>
         				</div>
@@ -236,7 +236,7 @@
         					<label class="control-label col-sm-2">题目内容</label>
         					<div class="col-sm-6">
         						<textarea class="form-control"
-        							id="topic_content1" name="topic_content" rows="15">
+        							id="topic_content1" name="topic_content" rows="8">
         						</textarea>
         					</div>
         				</div>
